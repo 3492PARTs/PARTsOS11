@@ -36,6 +36,11 @@ public class driveTrain extends SubsystemBase {
       return m_DriveTrain;
   }
 
+  public void move(double left , double right){
+    m_Drive.tankDrive(left, right);
+
+  } 
+
 
   
 
