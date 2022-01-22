@@ -2,6 +2,7 @@ package frc.Utils;
 // a class that has the required methods and variables to be applied to all motor controllers on the robot
 public abstract class encoderDistance {
     private int groupOneAverage, groupTwoAverage;
+    @SuppressWarnings("unused")
     private double[] initialGroupOne, initialGroupTwo;
 
 
@@ -22,3 +23,4 @@ public abstract class encoderDistance {
 
 
 }
+  
