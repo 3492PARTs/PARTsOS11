@@ -9,6 +9,8 @@ public class encoderDistanceSparkMax extends encoderDistance {
     double[] groupTwoTotals;
     double[] initialGroupOne;
     double[] initialGroupTwo;
+    double gearRatio;
+    double wheelCircumference;
     /**
      * @param groupOne The first set of relative encoders on a spark max
      */
@@ -40,10 +42,10 @@ public class encoderDistanceSparkMax extends encoderDistance {
     public void update() {
 
         for (int i = 0; i < groupOne.length; i++) {
-            groupOneTotals[i] = (groupOne[i].getPosition()- initialGroupOne[i]);
+            groupOneTotals[i] = ((groupOne[i].getPosition()- initialGroupOne[i]) * wheelCircumference ) / gearRatio;
         }
         for (int i = 0; i < groupTwo.length; i++) {
-            groupTwoTotals[i] = (groupTwo[i].getPosition() - initialGroupTwo[i]);
+            groupTwoTotals[i] = ((groupTwo[i].getPosition() - initialGroupTwo[i]) * wheelCircumference) / gearRatio;
         }
     }
 
