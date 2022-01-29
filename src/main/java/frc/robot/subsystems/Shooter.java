@@ -12,4 +12,15 @@ public class Shooter {
     
     }
     private static Shooter ballShooter = new Shooter();
+    public static Shooter getballShooter () {
+        return ballShooter;
+    }
+
+    public void setShooterSpeed(double speed){
+        ShooterMotor.set(ControlMode.PercentOutput,speed);
+
+    }
+
+
+
 }
