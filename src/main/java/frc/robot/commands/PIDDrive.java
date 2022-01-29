@@ -6,10 +6,10 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.Utils.encoderDistance;
 import frc.Utils.encoderDistanceSparkMax;
 import frc.robot.Constants;
 
+import frc.robot.subsystems.driveTrain;
 
 public class PIDDrive extends CommandBase {
   PIDController drivePidController;
@@ -17,13 +17,14 @@ public class PIDDrive extends CommandBase {
   double goalDistance;
   double[] pidConstants = Constants.PIDDriveConstants;
   
+  driveTrain mdDriveTrain = driveTrain.getM_DriveTrain();
   /** Creates a new PIDDrive. */
   public PIDDrive(double distance) {
     // Use addRequirements() here to declare subsystem dependencies.
     // makes a PID controller object
     drivePidController = new PIDController(pidConstants[0], pidConstants[1], pidConstants[2]);
     //makes 
-    distanceDriven = new encoderDistanceSparkMax(groupOne, groupTwo);
+    this.distanceDriven = mdDriveTrain.getDriveTrainDistanceMeasure();
       this.goalDistance = distance;
   }
 

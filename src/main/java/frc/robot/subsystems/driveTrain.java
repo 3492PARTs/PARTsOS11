@@ -6,11 +6,13 @@ package frc.robot.subsystems;
 
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.Utils.encoderDistanceSparkMax;
 
 public class driveTrain extends SubsystemBase {
   CANSparkMax left1 = new CANSparkMax(1, MotorType.kBrushless);
@@ -20,6 +22,15 @@ public class driveTrain extends SubsystemBase {
   CANSparkMax right1 = new CANSparkMax(1, MotorType.kBrushless);
   CANSparkMax right2 = new CANSparkMax(1, MotorType.kBrushless);
   CANSparkMax right3 = new CANSparkMax(1, MotorType.kBrushless);
+
+  RelativeEncoder left = left1.getEncoder();
+  RelativeEncoder right = right1.getEncoder();
+  RelativeEncoder[] leftEncoders = {left};
+  RelativeEncoder[] rightEncoders = {right};
+
+
+
+  
 
   MotorControllerGroup leftControllerGroup = new MotorControllerGroup(left1, left2, left3);
   MotorControllerGroup rightControllerGroup = new MotorControllerGroup(right1, right2, right3);
@@ -40,6 +51,12 @@ public class driveTrain extends SubsystemBase {
     m_Drive.tankDrive(left, right);
 
   } 
+
+  public encoderDistanceSparkMax getDriveTrainDistanceMeasure(){
+    
+    return new encoderDistanceSparkMax(leftEncoders, rightEncoders);
+    
+  }
 
 
   
