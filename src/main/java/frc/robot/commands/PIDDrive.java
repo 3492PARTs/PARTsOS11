@@ -8,17 +8,20 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.Utils.encoderDistance;
 import frc.Utils.encoderDistanceSparkMax;
+import frc.robot.Constants;
+
 
 public class PIDDrive extends CommandBase {
   PIDController drivePidController;
   encoderDistanceSparkMax distanceDriven;
   double goalDistance;
+  double[] pidConstants = Constants.PIDDriveConstants;
   
   /** Creates a new PIDDrive. */
   public PIDDrive(double distance) {
     // Use addRequirements() here to declare subsystem dependencies.
     // makes a PID controller object
-    drivePidController = new PIDController(kp, ki, kd);
+    drivePidController = new PIDController(pidConstants[0], pidConstants[1], pidConstants[2]);
     //makes 
     distanceDriven = new encoderDistanceSparkMax(groupOne, groupTwo);
       this.goalDistance = distance;
