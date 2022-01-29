@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.Utils.encoderDistance;
 import frc.Utils.encoderDistanceSparkMax;
@@ -13,6 +14,7 @@ public class PIDDrive extends CommandBase {
   PIDController drivePidController;
   encoderDistanceSparkMax distanceDriven;
   double goalDistance;
+  
   
   /** Creates a new PIDDrive. */
   public PIDDrive(double distance) {

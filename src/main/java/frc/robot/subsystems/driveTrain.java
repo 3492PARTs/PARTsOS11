@@ -8,7 +8,9 @@ package frc.robot.subsystems;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -24,6 +26,12 @@ public class driveTrain extends SubsystemBase {
   MotorControllerGroup leftControllerGroup = new MotorControllerGroup(left1, left2, left3);
   MotorControllerGroup rightControllerGroup = new MotorControllerGroup(right1, right2, right3);
   DifferentialDrive m_Drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
+
+  AnalogGyro gyro = new AnalogGyro();
+
+  public double getAngle(){
+    return gyro.getAngle();
+  }
 
   private static driveTrain m_DriveTrain = new driveTrain();
   
@@ -41,6 +49,10 @@ public class driveTrain extends SubsystemBase {
 
   } 
 
+  public void moveArcade(double speed, double angle){
+    m_Drive.turn
+  }
+
 
   
 
@@ -48,6 +60,4 @@ public class driveTrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-
-
 }
