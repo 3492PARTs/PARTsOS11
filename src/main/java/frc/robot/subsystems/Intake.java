@@ -3,10 +3,11 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import frc.robot.Constants;
 
 public class Intake {  
-    TalonSRX intakeMotor = new TalonSRX();
+    int pinNumber = Constants.intakeMotorPin;
+    TalonSRX intakeMotor = new TalonSRX(pinNumber);
     
     private Intake(){
     
