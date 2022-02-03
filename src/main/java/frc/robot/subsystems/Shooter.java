@@ -4,9 +4,12 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import frc.robot.Constants;
 
 public class Shooter {
-    TalonSRX ShooterMotor = new TalonSRX();
+
+
+    TalonSRX ShooterMotor = new TalonSRX(Constants.shooterMotorPin);
 
     private Shooter(){
     
@@ -21,6 +24,17 @@ public class Shooter {
 
     }
 
+    public static boolean getShooterStatusLeft() {
+        return false;
+    }
+
+    public static boolean getShooterStatusRight() {
+        return false;
+    }
+
+    public double getRPM(){
+        return (ShooterMotor.getSelectedSensorVelocity() * 10) / 4096;
+    }
 
 
 }
