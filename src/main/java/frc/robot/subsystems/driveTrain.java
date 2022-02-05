@@ -58,8 +58,8 @@ public class driveTrain extends SubsystemBase {
   } 
 
   public encoderDistanceSparkMax getDriveTrainDistanceMeasure(){
-    encoderDistanceSparkMax encoders = new encoderDistanceSparkMax(leftEncoders, rightEncoders,8.01 ,6*Math.PI);
-    return encoders;
+    
+    return new encoderDistanceSparkMax(leftEncoders, rightEncoders);
     
   }
 
