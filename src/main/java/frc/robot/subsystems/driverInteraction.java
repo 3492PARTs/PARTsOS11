@@ -10,9 +10,7 @@ public class driverInteraction {
                 static driverInteraction dInteraction = new driverInteraction();
                 Intake intake = Intake.getballIntake();
         
-        private driverInteraction() {
-
-        }
+        private driverInteraction(){}
 
         public driverInteraction getDriverInteraction(){
                 return dInteraction;
