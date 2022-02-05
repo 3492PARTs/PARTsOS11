@@ -9,6 +9,7 @@ public class driverInteraction {
                 static driveTrain dTrain = driveTrain.getM_DriveTrain();
                 static driverInteraction dInteraction = new driverInteraction();
                 Intake intake = Intake.getballIntake();
+                Shooter shooter = Shooter.getballShooter();
         
         private driverInteraction() {
 
@@ -24,7 +25,9 @@ public class driverInteraction {
                 if(leftJoystick.getRawButton(5)){
                         intake.toggleIntake();           
                 }
-
+                if(leftJoystick.getRawButton(6)){
+                        shooter.toggleShooter();           
+                }
         }
 
         public void intakeInteraction() {
