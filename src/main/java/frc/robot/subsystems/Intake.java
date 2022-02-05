@@ -3,12 +3,18 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 public class Intake {  
     TalonSRX intakeMotor = new TalonSRX();
     Boolean isOn = false;
 
+
+
+    int pinNumber = Constants.intakeMotorPin;
+    TalonSRX intakeMotor = new TalonSRX(pinNumber);
+    
 
     private Intake(){
     
@@ -17,6 +23,7 @@ public class Intake {
     public static Intake getballIntake () {
         return ballIntake;
     }
+
 
     public void toggleIntake(){
         if(isOn){
