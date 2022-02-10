@@ -20,11 +20,11 @@ public class driveTrain extends SubsystemBase {
   CANSparkMax right1 = new CANSparkMax(1, MotorType.kBrushless);
   CANSparkMax right2 = new CANSparkMax(1, MotorType.kBrushless);
   CANSparkMax right3 = new CANSparkMax(1, MotorType.kBrushless);
-
+  
   MotorControllerGroup leftControllerGroup = new MotorControllerGroup(left1, left2, left3);
   MotorControllerGroup rightControllerGroup = new MotorControllerGroup(right1, right2, right3);
   DifferentialDrive m_Drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
-
+  
   private static driveTrain m_DriveTrain = new driveTrain();
   
   /** Creates a new driveTrain. */
