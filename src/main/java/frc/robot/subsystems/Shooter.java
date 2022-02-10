@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 
 public class Shooter {
     TalonSRX ShooterMotor = new TalonSRX();
+    Boolean isOn = false;
 
     private Shooter(){
     
@@ -14,6 +15,15 @@ public class Shooter {
     private static Shooter ballShooter = new Shooter();
     public static Shooter getballShooter () {
         return ballShooter;
+    }
+
+    public void toggleShooter(){
+        if(isOn){
+            setShooterSpeed(1);
+        } else {
+            setShooterSpeed(0);
+        }
+        isOn = !isOn;
     }
 
     public void setShooterSpeed(double speed){
