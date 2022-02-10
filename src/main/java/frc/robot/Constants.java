@@ -17,7 +17,7 @@ public final class Constants {
     public static int intakeMotorPin; //TODO: Declare Value
     public static int shooterMotorPin; //TODO: declare value
 
-    public static double[] PIDDriveConstants = new double[3]; //kp, ki , kd TODO: set all
+    public static double[] PIDDriveConstants = {.7 , 0 ,0}; //kp, ki , kd TODO: set all not curently tuned 
 
     public static int[] driveTrainLeftSideCANIds = new int[3]; //TODO: set left front, middle, back left
     public static int[] driveTrainRightSideCANIds = new int[3]; //TODO: right front, middle, right left
