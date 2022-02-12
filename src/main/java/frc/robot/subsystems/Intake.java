@@ -22,7 +22,7 @@ public class Intake {
     }
 
 
-    public void toggleIntake(){
+    public void toggleIntake(){ // todo: fix the whole not working thing
         if(isOn){
             setIntakeSpeed(1);
         } else {
