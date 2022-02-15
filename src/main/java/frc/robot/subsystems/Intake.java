@@ -25,10 +25,12 @@ public class Intake {
     public void toggleIntake(){ // todo: fix the whole not working thing
         if(isOn){
             setIntakeSpeed(1);
+            isOn = !isOn;
         } else {
             setIntakeSpeed(0);
+            isOn = !isOn;
         }
-        isOn = !isOn;
+        
     }
 
     public void setIntakeSpeed(double speed){
