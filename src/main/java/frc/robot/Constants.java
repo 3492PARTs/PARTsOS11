@@ -14,11 +14,13 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static int intakeMotorPin; //TODO: Declare Value
-    public static int shooterMotorPin; //TODO: declare value
+    public static int intakeMotorPin = 3; //TODO: Declare Value
+    public static int shooterMotorPin = 6; //TODO: declare value
 
     public static double[] PIDDriveConstants = new double[3]; //kp, ki , kd TODO: set all
 
-    public static int[] driveTrainLeftSideCANIds = new int[3]; //TODO: set left front, middle, back left
-    public static int[] driveTrainRightSideCANIds = new int[3]; //TODO: right front, middle, right left
+    public static int[] driveTrainLeftSideCANIds = {12,7,8}; //TODO: set left front, middle, back left
+    public static int[] driveTrainRightSideCANIds = {9,10,11}; //TODO: right front, middle, right left
+
+
 }

@@ -14,16 +14,22 @@ public class driverInteraction {
 
         }
 
-        public driverInteraction getDriverInteraction(){
+        public static driverInteraction getDriverInteraction(){
                 return dInteraction;
         }
 
         public void update() {
-                dTrain.move(leftJoystick.getRawAxis(1), rightJoystick.getRawAxis(1));
+                // dTrain.move(leftJoystick.getRawAxis(1), rightJoystick.getRawAxis(1));
 
                 if(leftJoystick.getRawButton(5)){
                         intake.toggleIntake();           
                 }
+
+                if(leftJoystick.getRawButton(6)){
+                        intake.setIntakeSpeed(-1);
+                }
+
+                Shooter.getballShooter().setShooterSpeed(leftJoystick.getY());
 
         }
 
