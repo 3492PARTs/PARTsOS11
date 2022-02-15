@@ -4,10 +4,14 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
+import frc.robot.Constants;
 
 public class Shooter {
-    TalonSRX ShooterMotor = new TalonSRX();
+
+    TalonSRX ShooterMotor = new TalonSRX(Constants.shooterMotorPin);
+
     Boolean isOn = false;
+
 
     private Shooter(){
     
