@@ -17,7 +17,7 @@ public class driverInteraction {
         }
 
         public void update() {
-                // dTrain.move(leftJoystick.getRawAxis(1), rightJoystick.getRawAxis(1));
+                dTrain.move(leftJoystick.getRawAxis(1), rightJoystick.getRawAxis(1));
 
                 if(leftJoystick.getRawButton(5)){
                         Intake.getballIntake().setIntakeSpeed(1);
@@ -27,7 +27,7 @@ public class driverInteraction {
                         Intake.getballIntake().setIntakeSpeed(-1);
                 }
 
-                Shooter.getballShooter().setShooterSpeed(leftJoystick.getY());
+                //Shooter.getballShooter().setShooterSpeed(leftJoystick.getY()); TODO: remove when testing concludes 
 
         }
 
