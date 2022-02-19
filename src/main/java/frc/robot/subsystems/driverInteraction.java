@@ -15,7 +15,7 @@ public class driverInteraction {
         }
 
         public void update() {
-                dTrain.move(leftJoystick.getRawAxis(1), rightJoystick.getRawAxis(1));
+                dTrain.move(.25 * leftJoystick.getRawAxis(1), .25 * rightJoystick.getRawAxis(1));
 
                 if(leftJoystick.getRawButton(5)){
                         Intake.getballIntake().setIntakeSpeed(1);
