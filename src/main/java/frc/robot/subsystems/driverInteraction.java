@@ -8,9 +8,7 @@ public class driverInteraction {
                 static driveTrain dTrain = driveTrain.getM_DriveTrain();
                 static driverInteraction dInteraction = new driverInteraction();
         
-        private driverInteraction() {
-
-        }
+        private driverInteraction(){}
 
         public static driverInteraction getDriverInteraction(){
                 return dInteraction;
