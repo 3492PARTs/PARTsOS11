@@ -28,10 +28,8 @@ public class driveTrain extends SubsystemBase {
   CANSparkMax right2 = new CANSparkMax(CANRight[1], MotorType.kBrushless);
   CANSparkMax right3 = new CANSparkMax(CANRight[2], MotorType.kBrushless);
 
-  RelativeEncoder left = left2.getEncoder();
-  RelativeEncoder right = right2.getEncoder();
-  RelativeEncoder[] leftEncoders = {left};
-  RelativeEncoder[] rightEncoders = {right};
+  RelativeEncoder[] leftEncoders = {left1.getEncoder(), left2.getEncoder(), left3.getEncoder()};
+  RelativeEncoder[] rightEncoders = {right1.getEncoder(), right2.getEncoder(), right3.getEncoder()};
 
 
 
