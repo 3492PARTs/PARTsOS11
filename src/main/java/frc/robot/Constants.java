@@ -19,8 +19,8 @@ public final class Constants {
 
     public static double[] PIDDriveConstants = {.7 , 0 ,0}; //kp, ki , kd TODO: set all not curently tuned 
 
-    public static int[] driveTrainLeftSideCANIds = {12,7,8}; //TODO: set left front, middle, back left
-    public static int[] driveTrainRightSideCANIds = {9,10,11}; //TODO: right front, middle, right left
+    public static int[] driveTrainLeftSideCANIds = {7,8,9}; //TODO: set left front, middle, back left
+    public static int[] driveTrainRightSideCANIds = {10,11,12}; //TODO: right front, middle, right left
 
 
 }
