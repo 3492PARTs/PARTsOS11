@@ -25,7 +25,7 @@ public class PIDDrive extends CommandBase {
     drivePidController = new PIDController(pidConstants[0], pidConstants[1], pidConstants[2]);
     //makes 
   
-    this.distanceDriven = mdDriveTrain.getDriveTrainDistanceMeasure();
+    
       this.goalDistance = distance;
   }
 
@@ -33,6 +33,7 @@ public class PIDDrive extends CommandBase {
   @Override
   public void initialize() {
     //tells the PID loop how far we want to go
+    this.distanceDriven = mdDriveTrain.getDriveTrainDistanceMeasure();
     drivePidController.setSetpoint(goalDistance);
   }
 
@@ -40,16 +41,28 @@ public class PIDDrive extends CommandBase {
   @Override
   public void execute() {
     //tells the PID loop how far we have moved so it can stop us
-    drivePidController.calculate((distanceDriven.getGroupOneAverage() + distanceDriven.getGroupTwoAverage())/2, drivePidController.getSetpoint());
+    double Output = drivePidController.calculate((distanceDriven.getGroupOneAverage() + distanceDriven.getGroupTwoAverage())/2, drivePidController.getSetpoint());
+    if(Output > 1){
+      Output = 1;
+    }  else if (Output < -1){
+      Output = -1;
+    }
+ 
+    System.out.println(distanceDriven.getGroupOneAverage());
+    System.out.println(distanceDriven.getGroupTwoAverage());
+
+    mdDriveTrain.move(.5 * Output, .5 *Output);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    mdDriveTrain.move(0, 0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return drivePidController.atSetpoint();
+    return drivePidController.atSetpoint() && (Math.abs(mdDriveTrain.getLeftVelocity()) - .3 < 0) && (Math.abs(mdDriveTrain.getRightVelocity()) - .3 < 0);
   }
 }

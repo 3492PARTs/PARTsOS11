@@ -27,14 +27,19 @@ public class encoderDistanceSparkMax extends encoderDistance {
         for (int i = 0; i < groupOne.length; i++) {
             initialGroupOne[i] = groupOne[i].getPosition();
         }
+        for(int j =0; j < groupTwo.length; j++){
+            initialGroupTwo[j] = groupTwo[j].getPosition();
+        }
     }
 
     @Override
     public double getGroupOneAverage() {
-        return Average(groupOneTotals);
+        update();
+        return -Average(groupOneTotals);// use onlt for left side drive train
     }
     @Override
     public double getGroupTwoAverage() {
+        update();
         return Average(groupTwoTotals);
     }
 

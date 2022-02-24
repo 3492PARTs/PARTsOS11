@@ -36,6 +36,7 @@ public class driveTrain extends SubsystemBase {
   
 
   MotorControllerGroup leftControllerGroup = new MotorControllerGroup(left1, left2, left3);
+  
   MotorControllerGroup rightControllerGroup = new MotorControllerGroup(right1, right2, right3);
   DifferentialDrive m_Drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
   
@@ -43,6 +44,7 @@ public class driveTrain extends SubsystemBase {
   
   /** Creates a new driveTrain. */
   private driveTrain() {
+    leftControllerGroup.setInverted(true);
 
   }
   // Singleton Pattern use this, DO NOT make a new instance of a subsystem
@@ -61,7 +63,21 @@ public class driveTrain extends SubsystemBase {
     
   }
 
+  public double getLeftVelocity(){
+    double VelocityAccumulator = 0;
+    for (int i = 0; i < leftEncoders.length; i++) {
+      VelocityAccumulator += leftEncoders[i].getVelocity();
+    }
+    return VelocityAccumulator/3;
+  }
 
+  public double getRightVelocity(){
+    double VelocityAccumulator = 0;
+    for (int i = 0; i < rightEncoders.length; i++) {
+      VelocityAccumulator += rightEncoders[i].getVelocity();
+    }
+    return VelocityAccumulator/3;
+  }
   
 
   @Override
