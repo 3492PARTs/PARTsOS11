@@ -14,8 +14,8 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static int intakeMotorPin = 3; //TODO: Declare Value
-    public static int shooterMotorPin = 6; //TODO: declare value
+    public static int intakeMotorPin = 1; //TODO: Declare Value
+    public static int shooterMotorPin = 2; //TODO: declare value
 
     public static double[] PIDDriveConstants = {.7 , 0 ,0}; //kp, ki , kd TODO: set all not curently tuned 
 
