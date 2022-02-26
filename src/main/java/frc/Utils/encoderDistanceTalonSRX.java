@@ -1,47 +1,41 @@
+// Copyright (c) FIRST and other WPILib contributors.
+// Open Source Software; you can modify and/or share it under the terms of
+// the WPILib BSD license file in the root directory of this project.
+
 package frc.Utils;
 
 import com.revrobotics.RelativeEncoder;
 
-public class encoderDistanceSparkMax extends encoderDistance {
+/** Add your docs here. */
+public class encoderDistanceTalonSRX extends encoderDistance{
     RelativeEncoder[] groupOne;
-    RelativeEncoder[] groupTwo;
+  
     double[] groupOneTotals;
-    double[] groupTwoTotals;
+
     double[] initialGroupOne;
-    double[] initialGroupTwo;
+
     double gearRatio;
     double wheelCircumference;
-    /**
-     * @param groupOne The first set of relative encoders on a spark max
-     */
-    public encoderDistanceSparkMax(RelativeEncoder[] groupOne, RelativeEncoder[] groupTwo, double gearRatio, double wheelCircumference){
+
+    private encoderDistanceTalonSRX(RelativeEncoder[] groupOne, double gearRatio, double wheelCircumference) {
         this.groupOne = groupOne;
-        this.groupTwo = groupTwo;
         groupOneTotals = new double[groupOne.length];
-        groupTwoTotals = new double[groupTwo.length];
+
         initialGroupOne = new double[groupOne.length];
-        initialGroupTwo = new double[groupTwo.length];
+
         this.gearRatio = gearRatio;
         this.wheelCircumference = wheelCircumference;
 
         for (int i = 0; i < groupOne.length; i++) {
             initialGroupOne[i] = groupOne[i].getPosition();
         }
-        for(int j =0; j < groupTwo.length; j++){
-            initialGroupTwo[j] = groupTwo[j].getPosition();
-        }
     }
-
+    
     @Override
     public double getGroupOneAverage() {
-        update();
-        return -Average(groupOneTotals);// use onlt for left side drive train
+        return Average(groupOneTotals);
     }
-    @Override
-    public double getGroupTwoAverage() {
-        update();
-        return Average(groupTwoTotals);
-    }
+
 
 
 
@@ -51,9 +45,7 @@ public class encoderDistanceSparkMax extends encoderDistance {
         for (int i = 0; i < groupOne.length; i++) {
             groupOneTotals[i] = ((groupOne[i].getPosition()- initialGroupOne[i]) * wheelCircumference ) / gearRatio;
         }
-        for (int i = 0; i < groupTwo.length; i++) {
-            groupTwoTotals[i] = ((groupTwo[i].getPosition() - initialGroupTwo[i]) * wheelCircumference) / gearRatio;
-        }
+       
     }
 
 
@@ -68,5 +60,5 @@ public class encoderDistanceSparkMax extends encoderDistance {
     }
 
 
-    
+
 }
