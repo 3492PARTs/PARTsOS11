@@ -14,6 +14,10 @@ package frc.robot;
  */
 public final class Constants {
 
+    public static int elevatorMotorPin = 0; //TODO: set value
+
+    public static Object speed;
+    public static boolean autoFireLock;
     public static int intakeMotorPin = 1; //TODO: Declare Value
     public static int shooterMotorPin = 2; //TODO: declare value
     public static int intakePivotPin = 0; // TODO: set final value

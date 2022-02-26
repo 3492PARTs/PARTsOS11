@@ -9,7 +9,9 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Utils.encoderDistanceSparkMax;
@@ -39,7 +41,13 @@ public class driveTrain extends SubsystemBase {
   
   MotorControllerGroup rightControllerGroup = new MotorControllerGroup(right1, right2, right3);
   DifferentialDrive m_Drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
-  
+
+  AnalogGyro gyro = new AnalogGyro();
+
+  public double getAngle(){
+    return gyro.getAngle();
+  }
+
   private static driveTrain m_DriveTrain = new driveTrain();
   
   /** Creates a new driveTrain. */
