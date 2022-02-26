@@ -6,12 +6,12 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import frc.robot.Constants;
+import frc.robot.Constants.intakePivot;
 
 public class Intake {  
     Boolean isOn = false;
-    int pinNumber = Constants.intakeMotorPin;
-    TalonSRX intakeMotor = new TalonSRX(pinNumber);
-    
+    TalonSRX intakeMotor = new TalonSRX(Constants.intakeMotorPin);
+    TalonSRX intakePivot = new TalonSRX(Constants.intakePivotPin);
 
     private Intake(){
     
@@ -36,6 +36,18 @@ public class Intake {
     public void setIntakeSpeed(double speed){
         intakeMotor.set(ControlMode.PercentOutput,speed);
 
+    }
+
+    public void setPivotDirection(intakePivot dir){
+        if(dir == dir.up){
+            intakePivot.set(ControlMode.PercentOutput, .6);
+        }
+        if(dir == dir.stop){
+            intakePivot.set(ControlMode.PercentOutput, 0);
+        }
+        if(dir == dir.down){
+            intakePivot.set(ControlMode.PercentOutput, -.6);
+        }
     }
 
 

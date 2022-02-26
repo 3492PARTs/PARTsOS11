@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class driverInteraction { 
                 Joystick leftJoystick = new Joystick(1);
@@ -14,8 +16,10 @@ public class driverInteraction {
                 return dInteraction;
         }
 
-        public void update() {
-                dTrain.move(.25 * leftJoystick.getRawAxis(1), .25 * rightJoystick.getRawAxis(1));
+        public void update() { // left , right
+                dTrain.move(.75 * leftJoystick.getRawAxis(1), .75 * rightJoystick.getRawAxis(1));
+
+
 
                 if(leftJoystick.getRawButton(5)){
                         Intake.getballIntake().setIntakeSpeed(1);
@@ -41,7 +45,8 @@ public class driverInteraction {
                         Shooter.getballShooter().setShooterSpeed(0);
                 }
                 if(leftJoystick.getRawButton(9)){
-                        Shooter.getballShooter().setShooterSpeed(0.7);
+                        Shooter.getballShooter().setShooterSpeed(.7);
+
                 }
                 
         }
