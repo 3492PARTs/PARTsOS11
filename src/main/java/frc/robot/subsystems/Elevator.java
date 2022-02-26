@@ -8,14 +8,12 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.Utils.encoderDistanceTalonSRX;
 import frc.robot.Constants;
 
 public class Elevator extends SubsystemBase {
     TalonSRX elevatorMotor = new TalonSRX(Constants.elevatorMotorPin);
-    
-    private Elevator(){
-    
-    }
+    encoderDistanceTalonSRX persistentDistanceMeasure = new encoderDistanceTalonSRX(new TalonSRX[] {elevatorMotor}, 10 ,1  ) ; // TODO: set values properly
     private static Elevator elevator = new Elevator();
     public Elevator getElevator () {
         return elevator;

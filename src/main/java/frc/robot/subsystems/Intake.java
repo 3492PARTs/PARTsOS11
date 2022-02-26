@@ -3,8 +3,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import frc.robot.Constants;
 import frc.robot.Constants.intakePivot;
 
@@ -38,7 +36,7 @@ public class Intake {
 
     }
 
-    public void setPivotDirection(intakePivot dir){
+    public void setPivotDirection(intakePivot dir){// TODO: confirm directions are accurate 
         if(dir == dir.up){
             intakePivot.set(ControlMode.PercentOutput, .6);
         }

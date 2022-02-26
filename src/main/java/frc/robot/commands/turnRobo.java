@@ -25,6 +25,7 @@ public class turnRobo extends CommandBase {
   @Override
   public void initialize() {
     pidTurn.setSetpoint(angle);
+    m_DriveTrain.gyroVelocity();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -45,6 +46,6 @@ public class turnRobo extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pidTurn.atSetpoint();
+    return pidTurn.atSetpoint() && Math.abs(m_DriveTrain.gyroVelocity()) > 2;
   }
 }

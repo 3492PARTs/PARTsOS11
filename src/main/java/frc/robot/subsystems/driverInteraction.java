@@ -1,8 +1,7 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Constants.intakePivot;
 
 public class driverInteraction { 
                 Joystick leftJoystick = new Joystick(1);
@@ -47,6 +46,18 @@ public class driverInteraction {
                 }
 
                 //Shooter.getballShooter().setShooterSpeed(leftJoystick.getY()); TODO: remove when testing concludes 
+
+
+                if(leftJoystick.getRawButton(10)){
+                        Intake.getballIntake().setPivotDirection(intakePivot.up);
+                }
+                else if(leftJoystick.getRawButton(11)){
+                        Intake.getballIntake().setPivotDirection(intakePivot.down);
+                }
+                else{
+                        Intake.getballIntake().setPivotDirection(intakePivot.stop);
+                }
+                        
 
         }
 

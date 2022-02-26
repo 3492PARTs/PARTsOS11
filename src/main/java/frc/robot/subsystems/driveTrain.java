@@ -5,13 +5,12 @@
 package frc.robot.subsystems;
 
 
+import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Utils.encoderDistanceSparkMax;
@@ -42,10 +41,24 @@ public class driveTrain extends SubsystemBase {
   MotorControllerGroup rightControllerGroup = new MotorControllerGroup(right1, right2, right3);
   DifferentialDrive m_Drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
-  AnalogGyro gyro = new AnalogGyro();
+  AHRS gyro = new AHRS();
 
   public double getAngle(){
     return gyro.getAngle();
+  }
+
+  private double prevAngle = 0;
+  private long prevTime = 0;
+  /**
+   * @see make sure you discard first run each time
+   * @return the angular velocity of the robot
+   */
+  public double gyroVelocity(){
+    double angVel = (gyro.getAngle() - prevAngle) / (System.currentTimeMillis() - prevTime);
+    prevTime = System.currentTimeMillis();
+    prevAngle = gyro.getAngle();
+    return angVel;
+
   }
 
   private static driveTrain m_DriveTrain = new driveTrain();

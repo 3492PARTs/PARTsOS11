@@ -4,11 +4,11 @@
 
 package frc.Utils;
 
-import com.revrobotics.RelativeEncoder;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 /** Add your docs here. */
 public class encoderDistanceTalonSRX extends encoderDistance{
-    RelativeEncoder[] groupOne;
+    TalonSRX[] groupOne;
   
     double[] groupOneTotals;
 
@@ -17,7 +17,7 @@ public class encoderDistanceTalonSRX extends encoderDistance{
     double gearRatio;
     double wheelCircumference;
 
-    private encoderDistanceTalonSRX(RelativeEncoder[] groupOne, double gearRatio, double wheelCircumference) {
+    public encoderDistanceTalonSRX(TalonSRX[] groupOne, double gearRatio, double wheelCircumference) {
         this.groupOne = groupOne;
         groupOneTotals = new double[groupOne.length];
 
@@ -27,7 +27,7 @@ public class encoderDistanceTalonSRX extends encoderDistance{
         this.wheelCircumference = wheelCircumference;
 
         for (int i = 0; i < groupOne.length; i++) {
-            initialGroupOne[i] = groupOne[i].getPosition();
+            initialGroupOne[i] = groupOne[i].getSelectedSensorPosition();
         }
     }
     
@@ -43,7 +43,7 @@ public class encoderDistanceTalonSRX extends encoderDistance{
     public void update() {
 
         for (int i = 0; i < groupOne.length; i++) {
-            groupOneTotals[i] = ((groupOne[i].getPosition()- initialGroupOne[i]) * wheelCircumference ) / gearRatio;
+            groupOneTotals[i] = ((groupOne[i].getSelectedSensorPosition()- initialGroupOne[i]) * wheelCircumference ) / gearRatio;
         }
        
     }
