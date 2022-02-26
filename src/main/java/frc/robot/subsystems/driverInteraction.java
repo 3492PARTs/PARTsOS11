@@ -29,25 +29,25 @@ public class driverInteraction {
                         Intake.getballIntake().setIntakeSpeed(-1);
                 }
 
-                //Shooter.getballShooter().setShooterSpeed(leftJoystick.getY()); TODO: remove when testing concludes 
-
-        }
-
-        public void intakeInteraction() {
-
                 if(leftJoystick.getRawButton(6)){
                         Intake.getballIntake().setIntakeSpeed(0);
                 }
+
                 if(leftJoystick.getRawButton(7)){
                       Shooter.getballShooter().setShooterSpeed(1);
                 }
+
                 if(leftJoystick.getRawButton(8)){
                         Shooter.getballShooter().setShooterSpeed(0);
                 }
+
                 if(leftJoystick.getRawButton(9)){
                         Shooter.getballShooter().setShooterSpeed(.7);
 
                 }
-                
+
+                //Shooter.getballShooter().setShooterSpeed(leftJoystick.getY()); TODO: remove when testing concludes 
+
         }
+
 }
