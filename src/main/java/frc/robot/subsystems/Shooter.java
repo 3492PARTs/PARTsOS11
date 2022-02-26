@@ -13,7 +13,7 @@ public class Shooter {
 
 
     private Shooter(){
-    
+        ShooterMotor.configClosedloopRamp(1.5);
     }
     private static Shooter ballShooter = new Shooter();
     public static Shooter getballShooter () {
@@ -30,6 +30,7 @@ public class Shooter {
     }
 
     public void setShooterSpeed(double speed){
+        
         ShooterMotor.set(ControlMode.PercentOutput,speed);
 
     }
