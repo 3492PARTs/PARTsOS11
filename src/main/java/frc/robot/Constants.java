@@ -24,6 +24,7 @@ public final class Constants {
     public static int indexerMotor = 0; // TODO: set final value
 
     public static double[] PIDDriveConstants = {1.0 , 0 ,0}; //kp, ki , kd TODO: in tuning process do not change without test
+    public static double[] PIDTurnConstants = {1.0 , 0 ,0}; //kp, ki , kd TODO: in tuning process do not change without test
 
     public static int[] driveTrainLeftSideCANIds = {7,8,9}; //TODO: set left front, middle, back left
     public static int[] driveTrainRightSideCANIds = {10,11,12}; //TODO: right front, middle, right left
