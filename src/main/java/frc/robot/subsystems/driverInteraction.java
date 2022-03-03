@@ -16,7 +16,7 @@ public class driverInteraction {
         }
 
         public void update() { // left , right
-                dTrain.move(.75 * leftJoystick.getRawAxis(1), .75 * rightJoystick.getRawAxis(1));
+                dTrain.move(-.25 * rightJoystick.getRawAxis(1), -.25 * leftJoystick.getRawAxis(1));
 
 
 
@@ -24,9 +24,9 @@ public class driverInteraction {
                         Intake.getballIntake().setIntakeSpeed(1);
                 }
 
-                if(leftJoystick.getRawButton(6)){
+                /*if(leftJoystick.getRawButton(6)){
                         Intake.getballIntake().setIntakeSpeed(-1);
-                }
+                }*/
 
                 if(leftJoystick.getRawButton(6)){
                         Intake.getballIntake().setIntakeSpeed(0);
@@ -54,7 +54,7 @@ public class driverInteraction {
                 else if(leftJoystick.getRawButton(11)){
                         Intake.getballIntake().setPivotDirection(intakePivot.down);
                 }
-                else{
+                else if(leftJoystick.getRawButton(12)){
                         Intake.getballIntake().setPivotDirection(intakePivot.stop);
                 }
                         

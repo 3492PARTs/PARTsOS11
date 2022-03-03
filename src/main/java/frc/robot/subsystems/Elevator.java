@@ -19,7 +19,7 @@ public class Elevator extends SubsystemBase {
         return elevator;
     }
 
-    public void setIntakeSpeed(double speed){
+    public void setElevatorSpeed(double speed){
         elevatorMotor.set(ControlMode.PercentOutput,speed);
 
     }
