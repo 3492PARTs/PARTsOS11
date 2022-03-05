@@ -20,12 +20,12 @@ public class driverInteraction {
 
 
         public void update() { // left , right
-                dTrain.move(-.25 * rightJoystick.getRawAxis(1), -.25 * leftJoystick.getRawAxis(1));
+                dTrain.move(-1 * rightJoystick.getRawAxis(1), -1 * leftJoystick.getRawAxis(1));
 
 
 
                 if(leftJoystick.getRawButton(5)){
-                        Intake.getballIntake().setIntakeSpeed(1);
+                        Intake.getballIntake().setIntakeSpeed(-1);
                 }
 
                 /*if(leftJoystick.getRawButton(6)){
@@ -55,14 +55,33 @@ public class driverInteraction {
                 if(leftJoystick.getRawButton(10)){
                         Intake.getballIntake().setPivotDirection(intakePivot.up);
                 }
-                else if(leftJoystick.getRawButton(11)){
+                else if(leftJoystick.getRawButton(11) && rightJoystick.getRawButton(11)){
                         Intake.getballIntake().setPivotDirection(intakePivot.down);
                 }
                 else if(leftJoystick.getRawButton(12)){
                         Intake.getballIntake().setPivotDirection(intakePivot.stop);
                 }
+                else{
+                        Intake.getballIntake().setPivotDirection(intakePivot.stop);
+                }
                         
 
+                if(leftJoystick.getRawButton(13)) {
+                        Elevator.getElevator().setElevatorSpeed(1);
+                }
+                if(leftJoystick.getRawButton(14)) {
+                        Elevator.getElevator().setElevatorSpeed(-1);
+                }
+                if(leftJoystick.getRawButton(15)) {
+                        Elevator.getElevator().setElevatorSpeed(0);
+                }
+
+                if(rightJoystick.getRawButton(5)) {
+                        Indexer.getIndexer().setIndexerSpeed(-1);
+                }
+                if(rightJoystick.getRawButton(6)) {
+                        Indexer.getIndexer().setIndexerSpeed(0);
+                }
 
         }
 

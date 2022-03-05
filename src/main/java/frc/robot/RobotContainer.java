@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Auto.PIDDrive;
+import frc.robot.commands.Auto.ShootNScoot;
 import frc.robot.subsystems.ExampleSubsystem;
 
 /**
@@ -20,7 +21,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final PIDDrive m_autoCommand = new PIDDrive(48);
+  private final ShootNScoot m_autoCommand = new ShootNScoot();
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */

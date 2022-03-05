@@ -21,6 +21,7 @@ public class autoShooting extends CommandBase {
   @Override
   public void initialize() {
     Shooter.getballShooter().setShooterSpeed(speed);
+    initTime = System.currentTimeMillis();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,11 +31,13 @@ public class autoShooting extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    Shooter.getballShooter().setShooterSpeed(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return System.currentTimeMillis() - initTime > 5000;
+    return (System.currentTimeMillis() - initTime) > 5000;
   }
 }

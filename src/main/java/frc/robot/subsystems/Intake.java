@@ -38,13 +38,13 @@ public class Intake {
 
     public void setPivotDirection(intakePivot dir){
         if(dir == frc.robot.Constants.intakePivot.up){
-            intakePivot.set(ControlMode.PercentOutput, .6);
+            intakePivot.set(ControlMode.PercentOutput, -.6);
         }
         if(dir == frc.robot.Constants.intakePivot.stop){
             intakePivot.set(ControlMode.PercentOutput, 0);
         }
         if(dir == frc.robot.Constants.intakePivot.down){
-            intakePivot.set(ControlMode.PercentOutput, -.6);
+            intakePivot.set(ControlMode.PercentOutput, .6);
         }
     }
 

@@ -14,14 +14,14 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static int elevatorMotorPin = 0; //TODO: set value
+    public static int elevatorMotorPin = 5; //TODO: set value
 
     public static Object speed;
     public static boolean autoFireLock;
-    public static int intakeMotorPin = 5; //TODO: Declare Value
+    public static int intakeMotorPin = 2; //TODO: Declare Value
     public static int shooterMotorPin = 1; //TODO: declare value
-    public static int intakePivotPin = 0; // TODO: set final value
-    public static int indexerMotor = 3; // TODO: set final value
+    public static int intakePivotPin = 3; // TODO: set final value
+    public static int indexerMotor = 4; // TODO: set final value
 
     public static double[] PIDDriveConstants = {1.0 , 0 ,0}; //kp, ki , kd TODO: in tuning process do not change without test
     public static double[] PIDTurnConstants = {1.0 , 0 ,0}; //kp, ki , kd TODO: in tuning process do not change without test

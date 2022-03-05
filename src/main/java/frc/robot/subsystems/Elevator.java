@@ -15,7 +15,7 @@ public class Elevator extends SubsystemBase {
     TalonSRX elevatorMotor = new TalonSRX(Constants.elevatorMotorPin);
     encoderDistanceTalonSRX persistentDistanceMeasure = new encoderDistanceTalonSRX(new TalonSRX[] {elevatorMotor}, 10 ,1  ) ; // TODO: set values properly
     private static Elevator elevator = new Elevator();
-    public Elevator getElevator () {
+    public static Elevator getElevator () {
         return elevator;
     }
 
