@@ -37,15 +37,15 @@ public class driverInteraction {
                 }
 
                 if(leftJoystick.getRawButton(7)){
-                      shooter.getballShooter().setShooterSpeed(1);
+                      Shooter.getballShooter().setShooterSpeed(1);
                 }
 
                 if(leftJoystick.getRawButton(8)){
-                        shooter.getballShooter().setShooterSpeed(0);
+                        Shooter.getballShooter().setShooterSpeed(0);
                 }
 
                 if(leftJoystick.getRawButton(9)){
-                        shooter.getballShooter().setShooterSpeed(.7);
+                        Shooter.getballShooter().setShooterSpeed(.7);
 
                 }
 
