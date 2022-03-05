@@ -9,6 +9,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import frc.robot.Constants;
 
 public class Shooter {
+    //
 
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
