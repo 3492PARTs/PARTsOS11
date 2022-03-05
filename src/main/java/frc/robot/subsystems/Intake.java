@@ -36,7 +36,7 @@ public class Intake {
 
     }
 
-    public void setPivotDirection(intakePivot dir){// TODO: confirm directions are accurate 
+    public void setPivotDirection(intakePivot dir){
         if(dir == frc.robot.Constants.intakePivot.up){
             intakePivot.set(ControlMode.PercentOutput, .6);
         }
