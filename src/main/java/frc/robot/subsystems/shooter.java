@@ -2,47 +2,71 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import frc.robot.Constants;
 
-// import edu.wpi.first.wpilibj.Joystick;
+public class Shooter {
 
-public class shooter {
-    static shooter sTesting = new shooter(); 
+    NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
+    NetworkTableEntry tx = table.getEntry("tx");
+    NetworkTableEntry ty = table.getEntry("ty");
+    NetworkTableEntry ta = table.getEntry("ta");
 
-    //Joystick rightJoystick = new Joystick(0);
 
-    static TalonSRX shooterMotor1 = new TalonSRX(1); // get the shooterMotor
-
-    static NetworkTable table;  // this is for the limelight
-    NetworkTableEntry tx;
-    NetworkTableEntry ty;
-    NetworkTableEntry ta;
+    TalonSRX ShooterMotor = new TalonSRX(Constants.shooterMotorPin);
     
-    private shooter() {
-        table = NetworkTableInstance.getDefault().getTable("limelight"); // get the limelight
+
+    Boolean isOn = false;
+
+
+    private Shooter(){
+        ShooterMotor.configClosedloopRamp(1.5);
+    }
+    private static Shooter ballShooter = new Shooter();
+    public static Shooter getballShooter () {
+        return ballShooter;
     }
 
-    public static shooter getShooter(){
-            return sTesting;
+    public void toggleShooter(){
+        if(isOn){
+            setShooterSpeed(1);
+        } else {
+            setShooterSpeed(0);
+        }
+        isOn = !isOn;
     }
 
-    // functions for getting values
+    public void setShooterSpeed(double speed){
+        
+        ShooterMotor.set(ControlMode.PercentOutput,speed);
 
-    public double getTX() {
-        return table.getEntry("tx").getDouble(0); // limelight tX value
     }
 
-    public double getTY() {
-        return table.getEntry("ty").getDouble(0); // limelight tY value
+    public static boolean getShooterStatusLeft() {
+        return false;
     }
 
-    public double getTA() {
-        return table.getEntry("ta").getDouble(0); // limelight tA value
+    public static boolean getShooterStatusRight() {
+        return false;
     }
 
-    public void update(double speed) {
-        shooterMotor1.set(ControlMode.PercentOutput, speed); // set the speed of the shooterMotor based on what is inputed
+    public double getRPM(){
+        return (ShooterMotor.getSelectedSensorVelocity() * 10) / 4096;
     }
+
+    public double getTX(){
+        return tx.getDouble(0);
+    }
+
+    public double getTY(){
+        return ty.getDouble(0);
+    }
+
+    public double getTA(){
+        return ta.getDouble(0);
+    }
+    
 }

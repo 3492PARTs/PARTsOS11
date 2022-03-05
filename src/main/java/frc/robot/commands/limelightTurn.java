@@ -4,36 +4,38 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.driveTrain;
-import frc.robot.subsystems.shooter;
+import frc.robot.Constants;
+import frc.robot.subsystems.*;
 
 public class limelightTurn extends CommandBase {
   /** Creates a new limelightTurn. */ 
-  shooter Shooter; // make a shooter object
+  Shooter Shooter; // make a shooter object
   driveTrain dTrain = driveTrain.getM_DriveTrain(); // get the driveTrain
-
+  PIDController pidTurn = new PIDController(Constants.PIDTurnConstants[0], Constants.PIDTurnConstants[1], Constants.PIDTurnConstants[2]);
   public limelightTurn() {
     // Use addRequirements() here to declare subsystem dependencies.
+  
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Shooter = shooter.getShooter(); // get the shooter
+    Shooter = frc.robot.subsystems.Shooter.getballShooter(); // get the shooter
+
+
+
+    pidTurn.setSetpoint(Shooter.getTX());
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
 
-    if(Shooter.getTX() > 0) { // if tX value is greater than 0 move right
-      dTrain.move(0.3, -0.3); // moves the driveTrain right
-    }
-
-    if(Shooter.getTX() < 0) { // if tX value is less than 0 move left. 
-      dTrain.move(-0.3, 0.3); // moves the driveTrain left
-    }
+   double Output = pidTurn.calculate(Shooter.getTX());
+    driveTrain.getM_DriveTrain().move(Output, -Output);
+  
 
   }
 
@@ -51,9 +53,5 @@ public class limelightTurn extends CommandBase {
     return Math.abs(Shooter.getTX()) < 20; // returns true or false based on whether the tX value is less than or greater than 20
   }
 
-  public static void eatCats(boolean grows)   {
-    while (true) {
-      System.out.println("caaaats");
-    }
-  }
+
 }

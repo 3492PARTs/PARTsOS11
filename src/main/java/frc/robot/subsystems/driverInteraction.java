@@ -11,7 +11,7 @@ public class driverInteraction {
 
         // singleton pattern
 
-        private driverInteraction() {
+        private driverInteraction() { }
 
 
         public static driverInteraction getDriverInteraction(){
