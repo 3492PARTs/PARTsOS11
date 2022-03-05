@@ -12,4 +12,28 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
-public final class Constants {}
+public final class Constants {
+
+    public static int elevatorMotorPin = 0; //TODO: set value
+
+    public static Object speed;
+    public static boolean autoFireLock;
+    public static int intakeMotorPin = 5; //TODO: Declare Value
+    public static int shooterMotorPin = 1; //TODO: declare value
+    public static int intakePivotPin = 0; // TODO: set final value
+    public static int indexerMotor = 3; // TODO: set final value
+
+    public static double[] PIDDriveConstants = {1.0 , 0 ,0}; //kp, ki , kd TODO: in tuning process do not change without test
+    public static double[] PIDTurnConstants = {1.0 , 0 ,0}; //kp, ki , kd TODO: in tuning process do not change without test
+
+    public static int[] driveTrainLeftSideCANIds = {7,8,9}; //TODO: set left front, middle, back left
+    public static int[] driveTrainRightSideCANIds = {10,11,12}; //TODO: right front, middle, right left
+
+    public enum intakePivot{
+        up,
+        down,
+        stop
+    }
+
+
+}
