@@ -11,7 +11,7 @@ import frc.robot.subsystems.*;
 
 public class limelightTurn extends CommandBase {
   /** Creates a new limelightTurn. */ 
-  Shooter Shooter; // make a shooter object
+  shooter Shooter; // make a shooter object
   driveTrain dTrain = driveTrain.getM_DriveTrain(); // get the driveTrain
   PIDController pidTurn = new PIDController(Constants.PIDTurnConstants[0], Constants.PIDTurnConstants[1], Constants.PIDTurnConstants[2]);
   public limelightTurn() {
@@ -22,7 +22,7 @@ public class limelightTurn extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Shooter = frc.robot.subsystems.Shooter.getballShooter(); // get the shooter
+    Shooter = frc.robot.subsystems.shooter.getballShooter(); // get the shooter
 
 
 

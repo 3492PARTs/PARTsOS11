@@ -5,18 +5,18 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import frc.robot.Constants;
 
-public class Shooter {
+public class shooter {
 
     TalonSRX ShooterMotor = new TalonSRX(Constants.shooterMotorPin);
 
     Boolean isOn = false;
 
 
-    private Shooter(){
+    private shooter(){
         ShooterMotor.configClosedloopRamp(1.5);
     }
-    private static Shooter ballShooter = new Shooter();
-    public static Shooter getballShooter () {
+    private static shooter ballShooter = new shooter();
+    public static shooter getballShooter () {
         return ballShooter;
     }
 

@@ -20,7 +20,7 @@ public class autoShooting extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Shooter.getballShooter().setShooterSpeed(speed);
+    shooter.getballShooter().setShooterSpeed(speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
