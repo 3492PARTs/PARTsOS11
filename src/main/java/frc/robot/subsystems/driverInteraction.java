@@ -4,16 +4,20 @@ import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.Constants.intakePivot;
 
 public class driverInteraction { 
-                Joystick leftJoystick = new Joystick(1);
-                Joystick rightJoystick = new Joystick(0);
-                static driveTrain dTrain = driveTrain.getM_DriveTrain();
+                Joystick leftJoystick = new Joystick(1); // get the left joystick
+                Joystick rightJoystick = new Joystick(0); // get the right joystick
+                static driveTrain dTrain = driveTrain.getM_DriveTrain(); // get the driveTrain
                 static driverInteraction dInteraction = new driverInteraction();
-        
-        private driverInteraction(){}
+
+        // singleton pattern
+
+        private driverInteraction() {
+
 
         public static driverInteraction getDriverInteraction(){
                 return dInteraction;
         }
+
 
         public void update() { // left , right
                 dTrain.move(-.25 * rightJoystick.getRawAxis(1), -.25 * leftJoystick.getRawAxis(1));
@@ -58,6 +62,7 @@ public class driverInteraction {
                         Intake.getballIntake().setPivotDirection(intakePivot.stop);
                 }
                         
+
 
         }
 
