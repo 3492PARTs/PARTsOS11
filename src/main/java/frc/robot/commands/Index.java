@@ -7,10 +7,13 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.Utils.encoderDistanceTalonSRX;
 import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Shooter;
 
 public class Index extends CommandBase {
   Indexer indexer = Indexer.getIndexer();
   encoderDistanceTalonSRX distanceMeasure = indexer.getNonPersistantDistanceMeasure();
+  double shooterWheelSpeed = 0;
+  
   /** Creates a new Index. */
   public Index() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -26,14 +29,19 @@ public class Index extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    indexer.setIndexerSpeed(.4);
+  public void execute() {    
+    if( Shooter.getballShooter().getRPM() > shooterWheelSpeed){
+      indexer.setIndexerSpeed(.8);
+    
+    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     indexer.setIndexerSpeed(0);
+
   }
 
   // Returns true when the command should end.
