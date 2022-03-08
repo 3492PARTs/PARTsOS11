@@ -19,7 +19,7 @@ public class sparkMaxLinearDistance {
         total = 0;
     }
 
-    double currentDistance(){
+    public double currentDistance(){
         total = (distanceReader.getPosition() - initial) * distancePerTick ;
         return total;
     }
