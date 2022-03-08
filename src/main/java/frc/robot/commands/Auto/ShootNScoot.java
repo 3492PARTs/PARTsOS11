@@ -4,8 +4,11 @@
 
 package frc.robot.commands.Auto;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import frc.robot.commands.Index;
 import frc.robot.commands.autoShooting;
+import frc.robot.subsystems.Indexer;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -15,7 +18,8 @@ public class ShootNScoot extends SequentialCommandGroup {
   public ShootNScoot() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new autoShooting(1));
+    addCommands(new ParallelCommandGroup(new autoShooting(1), new SequentialCommandGroup(new Index(), new Index()))); 
+
     
 
   }

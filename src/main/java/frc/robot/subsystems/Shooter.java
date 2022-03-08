@@ -27,6 +27,7 @@ public class Shooter {
         return ballShooter;
     }
 
+
     public void toggleShooter(){
         if(isOn){
             setShooterSpeed(1);
