@@ -13,6 +13,7 @@ import frc.robot.Constants;
 
 public class Elevator extends SubsystemBase {
     TalonSRX elevatorMotor = new TalonSRX(Constants.elevatorMotorPin);
+    TalonSRX elevatorMotor2 = new TalonSRX(Constants.elevatorMotorPin2);
     encoderDistanceTalonSRX persistentDistanceMeasure = new encoderDistanceTalonSRX(new TalonSRX[] {elevatorMotor}, 10 ,1  ) ; // TODO: set values properly
     private static Elevator elevator = new Elevator();
     public static Elevator getElevator () {
@@ -21,6 +22,7 @@ public class Elevator extends SubsystemBase {
 
     public void setElevatorSpeed(double speed){
         elevatorMotor.set(ControlMode.PercentOutput,speed);
+        elevatorMotor2.set(ControlMode.PercentOutput,speed);
 
     }
   }
