@@ -40,9 +40,13 @@ public class driveTrain extends SubsystemBase {
   
   MotorControllerGroup rightControllerGroup = new MotorControllerGroup(right1, right2, right3);
   DifferentialDrive m_Drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
-
+// right positive and continous
+//left negative and continous
   AHRS gyro = new AHRS();
-
+/**
+ * 
+ * @return right positive and to infinity, left negative to negative infinity.
+ */
   public double getAngle(){
     return gyro.getAngle();
   }

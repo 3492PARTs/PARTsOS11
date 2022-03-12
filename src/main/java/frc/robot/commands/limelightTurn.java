@@ -4,6 +4,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
@@ -34,6 +35,7 @@ public class limelightTurn extends CommandBase {
   public void execute() {
 
    double Output = pidTurn.calculate(Shooter.getTX());
+   MathUtil.clamp(Output, -.6, .6);
     driveTrain.getM_DriveTrain().move(Output, -Output);
   
 
