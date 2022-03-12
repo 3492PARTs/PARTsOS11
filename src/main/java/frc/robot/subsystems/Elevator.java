@@ -13,15 +13,22 @@ import frc.Utils.sparkMaxLinearDistance;
 import frc.robot.Constants;
 
 public class Elevator extends SubsystemBase {
-    CANSparkMax elevatorMotor = new CANSparkMax(Constants.elevatorMotorPin, MotorType.kBrushless);
+
+    TalonSRX elevatorMotor = new TalonSRX(Constants.elevatorMotorPin);
+    TalonSRX elevatorMotor2 = new TalonSRX(Constants.elevatorMotorPin2);
     sparkMaxLinearDistance persistentDistanceMeasure = new sparkMaxLinearDistance(elevatorMotor.getEncoder(), 1) ; // TODO: set values properly
+
+  
     private static Elevator elevator = new Elevator();
     public static Elevator getElevator () {
         return elevator;
     }
 
     public void setElevatorSpeed(double speed){
-        elevatorMotor.set(speed);
+ main-dev-jh-auto
+        elevatorMotor.set(ControlMode.PercentOutput,speed);
+        elevatorMotor2.set(ControlMode.PercentOutput,speed);
+
 
     }
 
