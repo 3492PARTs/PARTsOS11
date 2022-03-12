@@ -52,7 +52,7 @@ public class limelightTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return Math.abs(Shooter.getTX()) < 20; // returns true or false based on whether the tX value is less than or greater than 20
+    return pidTurn.atSetpoint(); // returns true or false based on whether the tX value is less than or greater than 20
   }
 
 
