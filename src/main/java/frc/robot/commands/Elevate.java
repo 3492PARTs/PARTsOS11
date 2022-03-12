@@ -5,12 +5,13 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.Utils.TalonSRXLinearDistance;
 import frc.Utils.sparkMaxLinearDistance;
 import frc.robot.subsystems.Elevator;
 
 public class Elevate extends CommandBase {
   Elevator elevator = Elevator.getElevator();
-  sparkMaxLinearDistance distance;
+  TalonSRXLinearDistance distance;
   double goalDistance = 0; //TODO: SET DISTANCE
   /** Creates a new Elevate. */
   public Elevate() {
@@ -28,7 +29,7 @@ public class Elevate extends CommandBase {
   @Override
   public void execute() {
     if((distance.currentDistance() - goalDistance) > 0){
-      elevator.getElevator().setElevatorSpeed(.5);
+      elevator.setElevatorSpeed(.5);
     }
   
   }

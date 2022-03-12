@@ -5,18 +5,20 @@
 package frc.robot.subsystems;
 
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.Utils.sparkMaxLinearDistance;
+import frc.Utils.TalonSRXLinearDistance;
 import frc.robot.Constants;
 
 public class Elevator extends SubsystemBase {
 
     TalonSRX elevatorMotor = new TalonSRX(Constants.elevatorMotorPin);
     TalonSRX elevatorMotor2 = new TalonSRX(Constants.elevatorMotorPin2);
-    sparkMaxLinearDistance persistentDistanceMeasure = new sparkMaxLinearDistance(elevatorMotor.getEncoder(), 1) ; // TODO: set values properly
+    TalonSRXLinearDistance persistentDistanceMeasure = new TalonSRXLinearDistance(elevatorMotor, 1.0) ; // TODO: set values properly
 
   
     private static Elevator elevator = new Elevator();
@@ -25,14 +27,14 @@ public class Elevator extends SubsystemBase {
     }
 
     public void setElevatorSpeed(double speed){
- main-dev-jh-auto
+
         elevatorMotor.set(ControlMode.PercentOutput,speed);
         elevatorMotor2.set(ControlMode.PercentOutput,speed);
 
 
     }
 
-    public sparkMaxLinearDistance getPersistentDistanceMeasure(){
+    public TalonSRXLinearDistance getPersistentDistanceMeasure(){
         return persistentDistanceMeasure;
   }
 }
