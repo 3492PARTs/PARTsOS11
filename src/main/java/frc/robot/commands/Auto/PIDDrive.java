@@ -45,7 +45,7 @@ public class PIDDrive extends CommandBase {
       Output = 1;
     }  else if (Output < -1){
       Output = -1;
-    }
+    } 
  
     System.out.println(distanceDriven.getGroupOneAverage());
     System.out.println(distanceDriven.getGroupTwoAverage());
