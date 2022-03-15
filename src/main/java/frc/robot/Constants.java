@@ -21,7 +21,7 @@ public final class Constants {
     public static boolean autoFireLock;
     public static int intakeMotorPin = 2; //TODO: Declare Value
     public static int shooterMotorPin = 1; //TODO: declare value
-    public static int intakePivotPin = 3; // TODO: set final value
+    public static int intakePivotPin = 11; // TODO: set final value
     public static int indexerMotor = 4; // TODO: set final value
 
     public static double[] PIDDriveConstants = {1.0 , 0 ,0}; //kp, ki , kd TODO: in tuning process do not change without test

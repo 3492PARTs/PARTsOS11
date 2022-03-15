@@ -11,7 +11,7 @@ import frc.robot.Constants.intakePivot;
 public class Intake {  
     Boolean isOn = false;
     TalonSRX intakeMotor = new TalonSRX(Constants.intakeMotorPin);
-    CANSparkMax intakePivot = new CANSparkMax(Constants.intakePivotPin, MotorType.kBrushless);
+    TalonSRX intakePivot = new TalonSRX(Constants.intakePivotPin);
 
     private Intake(){
     
@@ -40,13 +40,13 @@ public class Intake {
 
     public void setPivotDirection(intakePivot dir){
         if(dir == frc.robot.Constants.intakePivot.up){
-            intakePivot.set(-.6);
+            intakePivot.set(ControlMode.PercentOutput,-.6);
         }
         if(dir == frc.robot.Constants.intakePivot.stop){
-            intakePivot.set(0);
+            intakePivot.set(ControlMode.PercentOutput, 0);
         }
         if(dir == frc.robot.Constants.intakePivot.down){
-            intakePivot.set(.6);
+            intakePivot.set(ControlMode.PercentOutput, .6);
         }
     }
 
