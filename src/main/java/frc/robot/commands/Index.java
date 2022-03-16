@@ -13,6 +13,7 @@ public class Index extends CommandBase {
   Indexer indexer = Indexer.getIndexer();
   encoderDistanceTalonSRX distanceMeasure = indexer.getNonPersistantDistanceMeasure();
   double shooterWheelSpeed = 0;
+  long initTime;
   
   /** Creates a new Index. */
   public Index() {
@@ -23,6 +24,7 @@ public class Index extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+      initTime = System.currentTimeMillis();
 
 
   }
@@ -31,7 +33,7 @@ public class Index extends CommandBase {
   @Override
   public void execute() {    
     if( Shooter.getballShooter().getRPM() > shooterWheelSpeed){
-      indexer.setIndexerSpeed(.8);
+      indexer.setIndexerSpeed(-.8);
     
     }
 
@@ -47,6 +49,6 @@ public class Index extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return distanceMeasure.getGroupOneAverage() > 9;
+    return (System.currentTimeMillis() - initTime) > 2500;
   }
 }

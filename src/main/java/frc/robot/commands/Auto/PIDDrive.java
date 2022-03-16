@@ -34,6 +34,7 @@ public class PIDDrive extends CommandBase {
     //tells the PID loop how far we want to go
     this.distanceDriven = mdDriveTrain.getDriveTrainDistanceMeasure();
     drivePidController.setSetpoint(goalDistance);
+    drivePidController.setTolerance(.6);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

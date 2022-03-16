@@ -18,7 +18,7 @@ public class ShootNScoot extends SequentialCommandGroup {
   public ShootNScoot() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ParallelCommandGroup(new autoShooting(1), new SequentialCommandGroup(new Index(), new Index()))); 
+    addCommands(new ParallelCommandGroup(new autoShooting(-1), new SequentialCommandGroup(new Index(), new Index()))); 
 
     
 

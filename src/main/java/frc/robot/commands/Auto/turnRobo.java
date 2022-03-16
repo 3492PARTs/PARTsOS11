@@ -12,6 +12,7 @@ import frc.robot.subsystems.driveTrain;
 
 public class turnRobo extends CommandBase {
   double angle;
+  double initAngle;
   double[] pidConstants = Constants.PIDTurnConstants;
   driveTrain m_DriveTrain = driveTrain.getM_DriveTrain();
   PIDController pidTurn = new PIDController(pidConstants[0], pidConstants[1], pidConstants[2]);
@@ -24,30 +25,37 @@ public class turnRobo extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    initAngle = m_DriveTrain.getAngle();
     pidTurn.setSetpoint(angle);
     m_DriveTrain.gyroVelocity();
     pidTurn.setIntegratorRange(-.5, .5);
+    pidTurn.setTolerance(.25);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
   
-  double Output = pidTurn.calculate(m_DriveTrain.getAngle());
-    MathUtil.clamp(Output, -.25, .25);
+  double Output = pidTurn.calculate(m_DriveTrain.getAngle() - initAngle);
+    Output = MathUtil.clamp(Output, -.3, .3);
   m_DriveTrain.move(-Output,Output);
     System.out.println(m_DriveTrain.getAngle());
+    System.out.println("veloctiy " + m_DriveTrain.gyroVelocity());
 
   }
 
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_DriveTrain.move(0, 0);
+    System.out.println("were done here ----------------------------");
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pidTurn.atSetpoint() && Math.abs(m_DriveTrain.gyroVelocity()) > 2;
+    
+    return pidTurn.atSetpoint() && Math.abs(m_DriveTrain.gyroVelocity()) < 10 ;
   }
 }

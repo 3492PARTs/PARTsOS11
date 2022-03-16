@@ -58,7 +58,7 @@ public class driveTrain extends SubsystemBase {
    * @return the angular velocity of the robot
    */
   public double gyroVelocity(){
-    double angVel = (gyro.getAngle() - prevAngle) / (System.currentTimeMillis() - prevTime);
+    double angVel = 1000* ((gyro.getAngle() - prevAngle) / ((System.currentTimeMillis() - prevTime)));
     prevTime = System.currentTimeMillis();
     prevAngle = gyro.getAngle();
     return angVel;
@@ -102,6 +102,10 @@ public class driveTrain extends SubsystemBase {
       VelocityAccumulator += rightEncoders[i].getVelocity();
     }
     return VelocityAccumulator/3;
+  }
+
+  public void calibrateGyro(){
+    gyro.calibrate();
   }
   
 
