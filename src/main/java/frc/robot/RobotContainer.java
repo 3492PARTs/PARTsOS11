@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
@@ -23,12 +25,23 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   private final ShootNScoot m_autoCommand = new ShootNScoot();
+  private SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-
+  
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+
+      SmartDashboard.putData("Choose Autonomous Mode", m_chooser);
+      m_chooser.setDefaultOption("MiddleTopShooter", new ShootNScoot());
+   
+
+
+
+
+
   }
 
   /**
