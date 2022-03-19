@@ -33,7 +33,7 @@ public class Index extends CommandBase {
   @Override
   public void execute() {    
     if( Shooter.getballShooter().getRPM() > shooterWheelSpeed){
-      indexer.setIndexerSpeed(-.8);
+      indexer.setIndexerSpeed(-1);
     
     }
 

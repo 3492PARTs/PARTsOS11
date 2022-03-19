@@ -20,7 +20,7 @@ public class driverInteraction {
 
 
         public void update() { // left , right
-                dTrain.move(-1 * rightJoystick.getRawAxis(1), -1 * leftJoystick.getRawAxis(1));
+                dTrain.move(-1 * leftJoystick.getRawAxis(1), -1 * rightJoystick.getRawAxis(1));
 
 
 

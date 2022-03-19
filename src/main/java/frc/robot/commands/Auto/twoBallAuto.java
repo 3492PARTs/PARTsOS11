@@ -6,8 +6,8 @@ package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.autoShooting;
-import frc.robot.commands.limelightTurn;
+import frc.robot.commands.Auto.*;
+import frc.robot.commands.*;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
@@ -17,6 +17,6 @@ public class twoBallAuto extends SequentialCommandGroup {
   public twoBallAuto() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new Delay(), new PIDDrive(-12), new autoShooting(.9), new turnRobo(-45), new ParallelCommandGroup(new PIDDrive(-72), new autoIntake(1)) , new PIDDrive(72), new autoShooting(.9) );
+    addCommands(new Delay(), new PIDDrive(-12), new ParallelCommandGroup( new autoShooting(.9), new Index()), new turnRobo(45), new ParallelCommandGroup(new PIDDrive(-72), new autoIntake(-1)) , new PIDDrive(72), new ParallelCommandGroup( new autoShooting(.9), new Index()) );
   }
 }

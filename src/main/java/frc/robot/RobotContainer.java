@@ -9,9 +9,11 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.commands.limelightTurn;
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
 import frc.robot.commands.Auto.turnRobo;
+import frc.robot.commands.Auto.twoBallAuto;
 import frc.robot.subsystems.ExampleSubsystem;
 
 /**
@@ -24,7 +26,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
-  private final ShootNScoot m_autoCommand = new ShootNScoot();
+  private final twoBallAuto m_autoCommand = new twoBallAuto();
   private SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   

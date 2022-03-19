@@ -4,6 +4,8 @@
 
 package frc.robot.commands;
 
+import javax.swing.text.html.parser.DTD;
+
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -14,17 +16,18 @@ public class limelightTurn extends CommandBase {
   /** Creates a new limelightTurn. */ 
   frc.robot.subsystems.Shooter Shooter; // make a shooter object
   driveTrain dTrain = driveTrain.getM_DriveTrain(); // get the driveTrain
+  
   PIDController pidTurn = new PIDController(Constants.PIDTurnConstants[0], Constants.PIDTurnConstants[1], Constants.PIDTurnConstants[2]);
   public limelightTurn() {
     // Use addRequirements() here to declare subsystem dependencies.
   
   }
-
+  double gyroOffset;
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
     Shooter = frc.robot.subsystems.Shooter.getballShooter(); // get the shooter
-
+     gyroOffset = dTrain.getAngle();
 
 
     pidTurn.setSetpoint(Shooter.getTX());
@@ -33,10 +36,10 @@ public class limelightTurn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-
-   double Output = pidTurn.calculate(Shooter.getTX());
-   MathUtil.clamp(Output, -.6, .6);
-    driveTrain.getM_DriveTrain().move(Output, -Output);
+    
+   double Output = pidTurn.calculate(dTrain.getAngle() - gyroOffset);
+   MathUtil.clamp(Output, -.3, .3);
+    driveTrain.getM_DriveTrain().move(-Output, Output);
   
 
   }
@@ -52,7 +55,7 @@ public class limelightTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pidTurn.atSetpoint(); // returns true or false based on whether the tX value is less than or greater than 20
+    return pidTurn.atSetpoint() && (dTrain.gyroVelocity() > 10); // returns true or false based on whether the tX value is less than or greater than 20
   }
 
 
