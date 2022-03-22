@@ -27,8 +27,8 @@ public final class Constants {
     public static double[] PIDDriveConstants = {.7 , 0 ,0}; //kp, ki , kd TODO: in tuning process do not change without test
     public static double[] PIDTurnConstants = {.0075 , .009 ,0}; //kp, ki , kd TODO: in tuning process do not change without test .15 , .175 ,0
 
-    public static int[] driveTrainLeftSideCANIds = {7,8,9}; //TODO: set left front, middle, back left
-    public static int[] driveTrainRightSideCANIds = {10,20,12}; //TODO: right front, middle, right left
+    public static int[] driveTrainLeftSideCANIds = {10,20,12}; //TODO: set left front, middle, back left
+    public static int[] driveTrainRightSideCANIds = {7,8,9}; //TODO: right front, middle, right left
     public static String SD_AUTO_DELAY = "autoDelay1";
 
     public enum intakePivot{
