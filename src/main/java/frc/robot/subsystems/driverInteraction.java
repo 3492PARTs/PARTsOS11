@@ -11,6 +11,7 @@ public class driverInteraction {
                 static driverInteraction dInteraction = new driverInteraction();
                 XboxController m_driverController = new XboxController(0);
                 Joystick buttonBox = new Joystick(1);
+                boolean biFrontalDrive = false;
 
         // singleton pattern
 
@@ -31,7 +32,8 @@ public class driverInteraction {
         }
 
         public void updateController() {
-                dTrain.move(-1 * m_driverController.getRawAxis(1), -1 * m_driverController.getRawAxis(5));
+                int driveMult = biFrontalDrive ? 1 : -1;
+                dTrain.move(driveMult * m_driverController.getRawAxis(1), driveMult * m_driverController.getRawAxis(5));
 
                 if(m_driverController.getRawAxis(2) > 0.5){
                         Intake.getballIntake().setIntakeSpeed(-1);
@@ -56,6 +58,10 @@ public class driverInteraction {
 
                 if(m_driverController.getRawButton(2)){
                         Indexer.getIndexer().setIndexerSpeed(-1);
+                }
+
+                if(m_driverController.getRawButton(7)){
+                        this.biFrontalDrive = !biFrontalDrive;
                 }
         }
 
