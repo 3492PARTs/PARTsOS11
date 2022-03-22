@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.intakePivot;
 
 public class driverInteraction { 
@@ -8,6 +9,8 @@ public class driverInteraction {
                 Joystick rightJoystick = new Joystick(0); // get the right joystick
                 static driveTrain dTrain = driveTrain.getM_DriveTrain(); // get the driveTrain
                 static driverInteraction dInteraction = new driverInteraction();
+                XboxController m_driverController = new XboxController(0);
+                Joystick buttonBox = new Joystick(1);
 
         // singleton pattern
 
@@ -17,7 +20,44 @@ public class driverInteraction {
         public static driverInteraction getDriverInteraction(){
                 return dInteraction;
         }
+        
+        public void updateButtonbox(){
+                if(buttonBox.getRawButton(8)){
+                        Elevator.getElevator().setElevatorSpeed(1);
+                }
+                else {
+                        Elevator.getElevator().setElevatorSpeed(0);
+                }
+        }
 
+        public void updateController() {
+                dTrain.move(-1 * m_driverController.getRawAxis(1), -1 * m_driverController.getRawAxis(5));
+
+                if(m_driverController.getRawAxis(2) > 0.5){
+                        Intake.getballIntake().setIntakeSpeed(-1);
+                }
+
+                if(m_driverController.getRawAxis(3) > 0.5 && m_driverController.getRawAxis(3) < 0.75){
+                        Shooter.getballShooter().setShooterSpeed(0.7);
+                }
+                else {
+                        Shooter.getballShooter().setShooterSpeed(1);
+                }
+
+                if(m_driverController.getRawButton(4)){
+                        Intake.getballIntake().setPivotDirection(intakePivot.up);
+                }
+                else if(m_driverController.getRawButton(1)){
+                        Intake.getballIntake().setPivotDirection(intakePivot.down);
+                }
+                else {
+                        Intake.getballIntake().setPivotDirection(intakePivot.stop);
+                }
+
+                if(m_driverController.getRawButton(2)){
+                        Indexer.getIndexer().setIndexerSpeed(-1);
+                }
+        }
 
         public void update() { // left , right
                 dTrain.move(-1 * rightJoystick.getRawAxis(1), -1 * leftJoystick.getRawAxis(1));
@@ -84,5 +124,7 @@ public class driverInteraction {
                 }
 
         }
+
+        
 
 }
