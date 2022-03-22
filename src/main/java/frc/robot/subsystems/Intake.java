@@ -1,17 +1,21 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.Constants;
 import frc.robot.Constants.intakePivot;
+import frc.Utils.TalonSRXLinearDistance;
 
 public class Intake {  
     Boolean isOn = false;
+    Boolean isCoast = false;
     TalonSRX intakeMotor = new TalonSRX(Constants.intakeMotorPin);
     TalonSRX intakePivot = new TalonSRX(Constants.intakePivotPin);
+    TalonSRXLinearDistance persistentDistanceMeasure = new TalonSRXLinearDistance(intakeMotor, 1.0);
 
     private Intake(){
     
@@ -50,12 +54,30 @@ public class Intake {
         }
     }
 
+    public TalonSRXLinearDistance getPersistantDistanceMeasure() {
+        return persistentDistanceMeasure;
+    }
 
 
-    
+    public void toggleCoastPivot(){
+        if(isCoast) {
+            intakePivot.setNeutralMode(NeutralMode.Brake);
+            
+        } else {
+            intakePivot.setNeutralMode(NeutralMode.Coast);
+            
+        }
 
-
-    
-
-
+        isCoast = !isCoast;
+        
+    }
 }
+
+
+
+    
+
+
+    
+
+

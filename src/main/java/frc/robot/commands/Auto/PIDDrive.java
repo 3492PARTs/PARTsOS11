@@ -63,6 +63,6 @@ public class PIDDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return drivePidController.atSetpoint() && (Math.abs((mdDriveTrain.getLeftVelocity()) - .3 )< 0) && ((Math.abs(mdDriveTrain.getRightVelocity()) - .3 )< 0);
+    return drivePidController.atSetpoint() && (Math.abs(mdDriveTrain.getLeftVelocity())< .30) && (Math.abs(mdDriveTrain.getRightVelocity()) < 0.3);
   }
 }

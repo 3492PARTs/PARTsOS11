@@ -21,6 +21,8 @@ public class TalonSRXLinearDistance {
         total = 0;
     }
 
+    
+
     public double currentDistance(){
         total = (distanceReader.getSelectedSensorPosition() - initial) * distancePerTick ;
         return total;

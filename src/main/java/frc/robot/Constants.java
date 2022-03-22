@@ -29,6 +29,7 @@ public final class Constants {
 
     public static int[] driveTrainLeftSideCANIds = {7,8,9}; //TODO: set left front, middle, back left
     public static int[] driveTrainRightSideCANIds = {10,20,12}; //TODO: right front, middle, right left
+    public static String SD_AUTO_DELAY = "autoDelay1";
 
     public enum intakePivot{
         up,
