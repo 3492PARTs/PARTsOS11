@@ -40,7 +40,7 @@ public class driverInteraction {
                 if(m_driverController.getRawAxis(3) > 0.5 && m_driverController.getRawAxis(3) < 0.75){
                         Shooter.getballShooter().setShooterSpeed(0.7);
                 }
-                else {
+                else if(m_driverController.getRawAxis(3) > .76) {
                         Shooter.getballShooter().setShooterSpeed(1);
                 }
 
