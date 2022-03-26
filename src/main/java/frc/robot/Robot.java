@@ -94,8 +94,10 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     sDashBoard.getsDashBoard().alwaysUpdate();
+    sDashBoard.getsDashBoard().TeleopUpdate();
     
-  dInteraction.update();
+  dInteraction.updateButtonbox();
+  dInteraction.updateController();
 
   
   }

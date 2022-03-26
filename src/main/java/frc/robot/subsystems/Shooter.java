@@ -20,7 +20,7 @@ public class Shooter {
 
 
     private Shooter(){
-        ShooterMotor.configClosedloopRamp(1.5);
+        ShooterMotor.configClosedloopRamp(.5);
     }
     private static Shooter ballShooter = new Shooter();
     public static Shooter getballShooter () {
@@ -65,5 +65,16 @@ public class Shooter {
 
     public double getTA(){
         return ta.getDouble(0);
+    }
+    /**
+     * 
+     * @return in feet
+     */
+    public double distFromFrontToTarget(){
+
+        double heightOfTarget = 8.6666666;
+        return (heightOfTarget/Math.tan(Math.toDegrees(45+getTY()))) - (2 + 1.541);// to get relative to front;
+        
+
     }
 }

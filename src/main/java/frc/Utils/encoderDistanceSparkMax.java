@@ -1,5 +1,7 @@
 package frc.Utils;
 
+import java.util.Arrays;
+
 import com.revrobotics.RelativeEncoder;
 
 public class encoderDistanceSparkMax extends encoderDistance {
@@ -57,14 +59,17 @@ public class encoderDistanceSparkMax extends encoderDistance {
     }
 
 
-
+// Average of two highest
     @Override
-    protected double Average(double[] totals) {
+    protected double Average(double[] totals) { 
         int sum = 0;
-        for(double i : totals){
-            sum += i;
+        double[] tempTotal = totals.clone();
+        Arrays.sort(tempTotal);
+        for(int i = totals.length-1; i>0; i--){
+            sum += tempTotal[i];
         }
-        return sum/totals.length;
+        
+        return sum/(totals.length-1);
     }
 
 

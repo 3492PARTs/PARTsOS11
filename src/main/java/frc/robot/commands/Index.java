@@ -12,13 +12,18 @@ import frc.robot.subsystems.Shooter;
 public class Index extends CommandBase {
   Indexer indexer = Indexer.getIndexer();
   encoderDistanceTalonSRX distanceMeasure = indexer.getNonPersistantDistanceMeasure();
-  double shooterWheelSpeed = 0;
+  double shooterWheelSpeed = -60;
   long initTime;
+  boolean check;
   
   /** Creates a new Index. */
   public Index() {
     // Use addRequirements() here to declare subsystem dependencies.
     
+  }
+
+  public Index(boolean check){
+    this.check = check;
   }
 
   // Called when the command is initially scheduled.
@@ -31,10 +36,15 @@ public class Index extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {    
-    if( Shooter.getballShooter().getRPM() > shooterWheelSpeed){
+  public void execute() {  
+    System.out.println(Shooter.getballShooter().getRPM());  
+   
+    if(Shooter.getballShooter().getRPM() < shooterWheelSpeed){
       indexer.setIndexerSpeed(-1);
     
+    }
+    if(!check){
+      indexer.setIndexerSpeed(-1);
     }
 
   }

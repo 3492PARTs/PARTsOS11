@@ -6,23 +6,32 @@ package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.HttpCamera;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.Shooter;
 
 /** Add your docs here. */
 public class sDashBoard {
 
-    sDashBoard(){}
+    sDashBoard(){
+        CameraServer.startAutomaticCapture(0);
+    }
 
 
     public void alwaysUpdate(){
-        CameraServer.startAutomaticCapture(0);
-        HttpCamera limeLight = new HttpCamera("LimeLight", "http://10.34.92.103:5800/stream.mpeg"); 
+        
+        
    
     
     }
 
     public void robotInitUpdate(){
         SmartDashboard.putNumber(Constants.SD_AUTO_DELAY, 0.0);
+    }
+
+    public void TeleopUpdate(){
+        SmartDashboard.putNumber("distance to target", Shooter.getballShooter().distFromFrontToTarget());
+        SmartDashboard.putBoolean("Distance to Target", (Shooter.getballShooter().distFromFrontToTarget() > 2.5 && Shooter.getballShooter().distFromFrontToTarget()< 3.33));
     }
 
 

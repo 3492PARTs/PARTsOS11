@@ -4,6 +4,9 @@
 
 package frc.robot.commands.Auto;
 
+import com.ctre.phoenix.Util;
+
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.Utils.encoderDistanceSparkMax;
@@ -15,10 +18,21 @@ public class PIDDrive extends CommandBase {
   encoderDistanceSparkMax distanceDriven;
   double goalDistance;
   double[] pidConstants = Constants.PIDDriveConstants;
+  double maxSpeed = 1;
   
   driveTrain mdDriveTrain = driveTrain.getM_DriveTrain();
   /** Creates a new PIDDrive. */
   public PIDDrive(double distance) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    // makes a PID controller object
+    drivePidController = new PIDController(pidConstants[0], pidConstants[1], pidConstants[2]);
+    //makes 
+  
+    
+      this.goalDistance = distance;
+  }
+  public PIDDrive(double distance , double maxSpeed) {
+    this.maxSpeed = maxSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
     // makes a PID controller object
     drivePidController = new PIDController(pidConstants[0], pidConstants[1], pidConstants[2]);
@@ -42,11 +56,7 @@ public class PIDDrive extends CommandBase {
   public void execute() {
     //tells the PID loop how far we have moved so it can stop us
     double Output = drivePidController.calculate((distanceDriven.getGroupOneAverage() + distanceDriven.getGroupTwoAverage())/2, drivePidController.getSetpoint());
-    if(Output > 1){
-      Output = 1;
-    }  else if (Output < -1){
-      Output = -1;
-    } 
+    Output = MathUtil.clamp(Output, -maxSpeed, maxSpeed);
  
     System.out.println(distanceDriven.getGroupOneAverage());
     System.out.println(distanceDriven.getGroupTwoAverage());
@@ -57,12 +67,14 @@ public class PIDDrive extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    System.out.println("done");
     mdDriveTrain.move(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    
     return drivePidController.atSetpoint() && (Math.abs(mdDriveTrain.getLeftVelocity())< .30) && (Math.abs(mdDriveTrain.getRightVelocity()) < 0.3);
   }
 }

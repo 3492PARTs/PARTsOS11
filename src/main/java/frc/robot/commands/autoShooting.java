@@ -38,6 +38,6 @@ public class autoShooting extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (System.currentTimeMillis() - initTime) > 5000;
+    return (System.currentTimeMillis() - initTime) > 2500;
   }
 }

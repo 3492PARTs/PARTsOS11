@@ -15,8 +15,6 @@ public class Intake {
     Boolean isCoast = false;
     TalonSRX intakeMotor = new TalonSRX(Constants.intakeMotorPin);
     TalonSRX intakePivot = new TalonSRX(Constants.intakePivotPin);
-    TalonSRXLinearDistance persistentDistanceMeasure = new TalonSRXLinearDistance(intakeMotor, 1.0);
-
     private Intake(){
     
     }
@@ -52,10 +50,6 @@ public class Intake {
         if(dir == frc.robot.Constants.intakePivot.down){
             intakePivot.set(ControlMode.PercentOutput, .6);
         }
-    }
-
-    public TalonSRXLinearDistance getPersistantDistanceMeasure() {
-        return persistentDistanceMeasure;
     }
 
 

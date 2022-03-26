@@ -12,8 +12,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.limelightTurn;
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
+import frc.robot.commands.Auto.TwoBallLow;
+import frc.robot.commands.Auto.flipFast;
 import frc.robot.commands.Auto.turnRobo;
 import frc.robot.commands.Auto.twoBallAuto;
+import frc.robot.commands.Auto.twoBallDiagonal;
 import frc.robot.subsystems.ExampleSubsystem;
 
 /**
@@ -25,8 +28,8 @@ import frc.robot.subsystems.ExampleSubsystem;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-
-  private final twoBallAuto m_autoCommand = new twoBallAuto();
+  Command com;
+  
   private SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   
@@ -37,8 +40,15 @@ public class RobotContainer {
 
 
       SmartDashboard.putData("Choose Autonomous Mode", m_chooser);
-      m_chooser.setDefaultOption("MiddleTopShooter", new ShootNScoot());
-   
+      m_chooser.setDefaultOption("Two Ball auto", new twoBallAuto());
+      m_chooser.addOption("SHOOT and SCoot", new ShootNScoot());
+      m_chooser.addOption("PID TUNE", new PIDDrive(-48)); // move forward 48 in
+      m_chooser.addOption("TUNETURN",new turnRobo(5));
+      m_chooser.addOption("Two ball diagonal", new twoBallDiagonal());
+      m_chooser.addOption("flipFast", new flipFast());
+      m_chooser.addOption("low goal 2", new TwoBallLow());
+
+
 
 
 
@@ -61,6 +71,6 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
-    return m_autoCommand;
+    return m_chooser.getSelected();
   }
 }

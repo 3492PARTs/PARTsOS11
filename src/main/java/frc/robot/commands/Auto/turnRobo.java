@@ -37,7 +37,7 @@ public class turnRobo extends CommandBase {
   public void execute() {
   
   double Output = pidTurn.calculate(m_DriveTrain.getAngle() - initAngle);
-    Output = MathUtil.clamp(Output, -.3, .3);
+    Output = MathUtil.clamp(Output, -.5, .5);
   m_DriveTrain.move(-Output,Output);
     System.out.println(m_DriveTrain.getAngle());
     System.out.println("veloctiy " + m_DriveTrain.gyroVelocity());

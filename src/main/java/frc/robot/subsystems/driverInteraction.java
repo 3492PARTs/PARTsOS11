@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.Constants.intakePivot;
 
 public class driverInteraction { 
-                Joystick leftJoystick = new Joystick(1); // get the left joystick
-                Joystick rightJoystick = new Joystick(0); // get the right joystick
+                //Joystick leftJoystick = new Joystick(1); // get the left joystick
+                //Joystick rightJoystick = new Joystick(0); // get the right joystick
                 static driveTrain dTrain = driveTrain.getM_DriveTrain(); // get the driveTrain
                 static driverInteraction dInteraction = new driverInteraction();
                 XboxController m_driverController = new XboxController(0);
@@ -34,7 +34,7 @@ public class driverInteraction {
 
         public void updateController() {
                 int driveMult = biFrontalDrive ? 1 : -1;
-                dTrain.move(driveMult * m_driverController.getRawAxis(1), driveMult * m_driverController.getRawAxis(5));
+                dTrain.move(driveMult * Math.pow(m_driverController.getRawAxis(1),3), driveMult * Math.pow(m_driverController.getRawAxis(5), 3 ));
 
                 if(m_driverController.getRawAxis(2) > 0.5){
                         Intake.getballIntake().setIntakeSpeed(-1);
@@ -42,12 +42,17 @@ public class driverInteraction {
                         Intake.getballIntake().setIntakeSpeed(0);
                 }
 
-                if(m_driverController.getRawAxis(3) > 0.5 && m_driverController.getRawAxis(3) < 0.75){
-                        Shooter.getballShooter().setShooterSpeed(0.7);
-                }
-                else if(m_driverController.getRawAxis(3) > .76) {
+   
+                if(m_driverController.getRawAxis(3) > .05) {
                         Shooter.getballShooter().setShooterSpeed(1);
                 } else {
+                        Shooter.getballShooter().setShooterSpeed(0);
+                }
+
+                if(m_driverController.getRawButton(6)){
+                        Shooter.getballShooter().setShooterSpeed(.6);
+                }
+                else{
                         Shooter.getballShooter().setShooterSpeed(0);
                 }
 
@@ -75,73 +80,73 @@ public class driverInteraction {
                 }
         }
 
-        public void update() { // left , right
-                dTrain.move(-1 * leftJoystick.getRawAxis(1), -1 * rightJoystick.getRawAxis(1));
+        // public void update() { // left , right
+        //         dTrain.move(-1 * leftJoystick.getRawAxis(1), -1 * rightJoystick.getRawAxis(1));
 
-                updateController();
-                updateButtonbox();
-
-
-                if(leftJoystick.getRawButton(5)){
-                        Intake.getballIntake().setIntakeSpeed(-1);
-                }
-
-                /*if(leftJoystick.getRawButton(6)){
-                        Intake.getballIntake().setIntakeSpeed(-1);
-                }*/
-
-                if(leftJoystick.getRawButton(6)){
-                        Intake.getballIntake().setIntakeSpeed(0);
-                }
-
-                if(leftJoystick.getRawButton(7)){
-                      Shooter.getballShooter().setShooterSpeed(1);
-                }
-
-                if(leftJoystick.getRawButton(8)){
-                        Shooter.getballShooter().setShooterSpeed(0);
-                }
-
-                if(leftJoystick.getRawButton(9)){
-                        Shooter.getballShooter().setShooterSpeed(.7);
-
-                }
-
-                //Shooter.getballShooter().setShooterSpeed(leftJoystick.getY()); TODO: remove when testing concludes 
+        //         updateController();
+        //         updateButtonbox();
 
 
-                if(leftJoystick.getRawButton(10)){
-                        Intake.getballIntake().setPivotDirection(intakePivot.up);
-                }
-                else if(leftJoystick.getRawButton(11) && rightJoystick.getRawButton(11)){
-                        Intake.getballIntake().setPivotDirection(intakePivot.down);
-                }
-                else if(leftJoystick.getRawButton(12)){
-                        Intake.getballIntake().setPivotDirection(intakePivot.stop);
-                }
-                else{
-                        Intake.getballIntake().setPivotDirection(intakePivot.stop);
-                }
+        //         if(leftJoystick.getRawButton(5)){
+        //                 Intake.getballIntake().setIntakeSpeed(-1);
+        //         }
+
+        //         /*if(leftJoystick.getRawButton(6)){
+        //                 Intake.getballIntake().setIntakeSpeed(-1);
+        //         }*/
+
+        //         if(leftJoystick.getRawButton(6)){
+        //                 Intake.getballIntake().setIntakeSpeed(0);
+        //         }
+
+        //         if(leftJoystick.getRawButton(7)){
+        //               Shooter.getballShooter().setShooterSpeed(1);
+        //         }
+
+        //         if(leftJoystick.getRawButton(8)){
+        //                 Shooter.getballShooter().setShooterSpeed(0);
+        //         }
+
+        //         if(leftJoystick.getRawButton(9)){
+        //                 Shooter.getballShooter().setShooterSpeed(.7);
+
+        //         }
+
+        //         //Shooter.getballShooter().setShooterSpeed(leftJoystick.getY()); TODO: remove when testing concludes 
+
+
+        //         if(leftJoystick.getRawButton(10)){
+        //                 Intake.getballIntake().setPivotDirection(intakePivot.up);
+        //         }
+        //         else if(leftJoystick.getRawButton(11) && rightJoystick.getRawButton(11)){
+        //                 Intake.getballIntake().setPivotDirection(intakePivot.down);
+        //         }
+        //         else if(leftJoystick.getRawButton(12)){
+        //                 Intake.getballIntake().setPivotDirection(intakePivot.stop);
+        //         }
+        //         else{
+        //                 Intake.getballIntake().setPivotDirection(intakePivot.stop);
+        //         }
                         
 
-                if(leftJoystick.getRawButton(13)) {
-                        Elevator.getElevator().setElevatorSpeed(1);
-                }
-                if(leftJoystick.getRawButton(14)) {
-                        Elevator.getElevator().setElevatorSpeed(-1);
-                }
-                if(leftJoystick.getRawButton(15)) {
-                        Elevator.getElevator().setElevatorSpeed(0);
-                }
+        //         if(leftJoystick.getRawButton(13)) {
+        //                 Elevator.getElevator().setElevatorSpeed(1);
+        //         }
+        //         if(leftJoystick.getRawButton(14)) {
+        //                 Elevator.getElevator().setElevatorSpeed(-1);
+        //         }
+        //         if(leftJoystick.getRawButton(15)) {
+        //                 Elevator.getElevator().setElevatorSpeed(0);
+        //         }
 
-                if(rightJoystick.getRawButton(5)) {
-                        Indexer.getIndexer().setIndexerSpeed(-1);
-                }
-                if(rightJoystick.getRawButton(6)) {
-                        Indexer.getIndexer().setIndexerSpeed(0);
-                }
+        //         if(rightJoystick.getRawButton(5)) {
+        //                 Indexer.getIndexer().setIndexerSpeed(-1);
+        //         }
+        //         if(rightJoystick.getRawButton(6)) {
+        //                 Indexer.getIndexer().setIndexerSpeed(0);
+        //         }
 
-        }
+        // }
 
         
 
