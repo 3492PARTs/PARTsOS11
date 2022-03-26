@@ -25,7 +25,7 @@ public class driverInteraction {
         
         public void updateButtonbox(){
                 if(buttonBox.getRawButton(8)){
-                        Elevator.getElevator().setElevatorSpeed(1);
+                        Elevator.getElevator().setElevatorSpeed(-1);
                 }
                 else {
                         Elevator.getElevator().setElevatorSpeed(0);

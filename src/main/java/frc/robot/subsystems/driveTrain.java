@@ -71,6 +71,15 @@ public class driveTrain extends SubsystemBase {
   private driveTrain() {
     leftControllerGroup.setInverted(true);
 
+    double rampRate = .75;
+    left1.setOpenLoopRampRate(rampRate);
+    left2.setOpenLoopRampRate(rampRate);
+    left3.setOpenLoopRampRate(rampRate);
+
+    right1.setOpenLoopRampRate(rampRate);
+    right2.setOpenLoopRampRate(rampRate);
+    right3.setOpenLoopRampRate(rampRate);
+
   }
   // Singleton Pattern use this, DO NOT make a new instance of a subsystem
   public static driveTrain getM_DriveTrain() {
