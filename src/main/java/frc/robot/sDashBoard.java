@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.HttpCamera;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /** Add your docs here. */
@@ -12,11 +14,21 @@ public class sDashBoard {
     sDashBoard(){}
 
 
+    public void alwaysUpdate(){
+        CameraServer.startAutomaticCapture(0);
+        HttpCamera limeLight = new HttpCamera("LimeLight", "http://10.34.92.103:5800/stream.mpeg"); 
+   
+    
+    }
 
     public void robotInitUpdate(){
         SmartDashboard.putNumber(Constants.SD_AUTO_DELAY, 0.0);
     }
 
+
+    public static sDashBoard getsDashBoard(){
+        return _staticSmartDashboard;
+    }
     // =====================================================================================
     // Define Singleton Pattern
     // =====================================================================================
