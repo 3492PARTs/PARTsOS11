@@ -12,6 +12,7 @@ public class driverInteraction {
                 XboxController m_driverController = new XboxController(0);
                 Joystick buttonBox = new Joystick(1);
                 boolean biFrontalDrive = false;
+                boolean toggleIndexer = false;
 
         // singleton pattern
 
@@ -37,6 +38,8 @@ public class driverInteraction {
 
                 if(m_driverController.getRawAxis(2) > 0.5){
                         Intake.getballIntake().setIntakeSpeed(-1);
+                } else {
+                        Intake.getballIntake().setIntakeSpeed(0);
                 }
 
                 if(m_driverController.getRawAxis(3) > 0.5 && m_driverController.getRawAxis(3) < 0.75){
@@ -44,6 +47,8 @@ public class driverInteraction {
                 }
                 else if(m_driverController.getRawAxis(3) > .76) {
                         Shooter.getballShooter().setShooterSpeed(1);
+                } else {
+                        Shooter.getballShooter().setShooterSpeed(0);
                 }
 
                 if(m_driverController.getRawButton(4)){
@@ -57,7 +62,12 @@ public class driverInteraction {
                 }
 
                 if(m_driverController.getRawButton(2)){
-                        Indexer.getIndexer().setIndexerSpeed(-1);
+                        if(toggleIndexer == true) {
+                                Indexer.getIndexer().setIndexerSpeed(-1);
+                        } else {
+                                Indexer.getIndexer().setIndexerSpeed(0);
+                        }
+                        toggleIndexer = !toggleIndexer;
                 }
 
                 if(m_driverController.getRawButton(7)){
@@ -68,6 +78,8 @@ public class driverInteraction {
         public void update() { // left , right
                 dTrain.move(-1 * leftJoystick.getRawAxis(1), -1 * rightJoystick.getRawAxis(1));
 
+                updateController();
+                updateButtonbox();
 
 
                 if(leftJoystick.getRawButton(5)){
