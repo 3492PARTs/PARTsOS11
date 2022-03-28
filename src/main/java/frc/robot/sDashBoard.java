@@ -20,7 +20,7 @@ public class sDashBoard {
 
     public void alwaysUpdate(){
         
-        
+        SmartDashboard.putBoolean("shooter wheel speed", Shooter.getballShooter().getRPM() < -64);
    
     
     }

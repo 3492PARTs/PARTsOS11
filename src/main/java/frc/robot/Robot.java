@@ -96,8 +96,8 @@ public class Robot extends TimedRobot {
     sDashBoard.getsDashBoard().alwaysUpdate();
     sDashBoard.getsDashBoard().TeleopUpdate();
     
-  dInteraction.updateButtonbox();
-  dInteraction.updateController();
+    dInteraction.updateButtonbox();
+    dInteraction.updateController();
 
   
   }

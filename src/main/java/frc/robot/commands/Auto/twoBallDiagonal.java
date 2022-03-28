@@ -18,6 +18,6 @@ public class twoBallDiagonal extends SequentialCommandGroup {
   public twoBallDiagonal() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ParallelCommandGroup( new ParallelRaceGroup(new autoShooting(1), new Index()), new turnRobo(15), new LowerIntake()), new ParallelRaceGroup(new PIDDrive(40, .8), new IntakeCom()), new PIDDrive(-40, .9), new ParallelCommandGroup(new turnRobo(-15), new ParallelRaceGroup(new autoShooting(1), new Index(), new IntakeCom()) ));
+    addCommands(new ParallelCommandGroup( new ParallelRaceGroup(new autoShooting(1), new Index(true)), new turnRobo(15), new LowerIntake()), new ParallelRaceGroup(new PIDDrive(40, .8), new IntakeCom()), new PIDDrive(-40, .9), new ParallelCommandGroup(new turnRobo(-15), new ParallelRaceGroup(new autoShooting(1), new Index(), new IntakeCom()) ));
   }
 }

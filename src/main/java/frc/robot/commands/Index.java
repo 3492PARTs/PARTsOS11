@@ -12,7 +12,7 @@ import frc.robot.subsystems.Shooter;
 public class Index extends CommandBase {
   Indexer indexer = Indexer.getIndexer();
   encoderDistanceTalonSRX distanceMeasure = indexer.getNonPersistantDistanceMeasure();
-  double shooterWheelSpeed = -60;
+  double shooterWheelSpeed = -64;
   long initTime;
   boolean check;
   

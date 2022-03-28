@@ -10,7 +10,7 @@ public class driverInteraction {
                 static driveTrain dTrain = driveTrain.getM_DriveTrain(); // get the driveTrain
                 static driverInteraction dInteraction = new driverInteraction();
                 XboxController m_driverController = new XboxController(0);
-                Joystick buttonBox = new Joystick(1);
+                XboxController buttonBox = new XboxController(1);
                 boolean biFrontalDrive = false;
                 boolean toggleIndexer = false;
 
@@ -24,12 +24,14 @@ public class driverInteraction {
         }
         
         public void updateButtonbox(){
-                if(buttonBox.getRawButton(8)){
+                if(buttonBox.getXButton()){
                         Elevator.getElevator().setElevatorSpeed(-1);
                 }
                 else {
                         Elevator.getElevator().setElevatorSpeed(0);
                 }
+
+
 
                 
 
@@ -49,21 +51,24 @@ public class driverInteraction {
                         System.out.println(m_driverController.getRightBumper());
                         Shooter.getballShooter().setShooterSpeed(.6);
                 }
-                else{
-                        Shooter.getballShooter().setShooterSpeed(0);
-                }
-
-                if(m_driverController.getLeftBumper()){
+                else if(m_driverController.getRightTriggerAxis() > .5){
                         Shooter.getballShooter().setShooterSpeed(1);
                 }
                 else{
                         Shooter.getballShooter().setShooterSpeed(0);
                 }
 
-                if(m_driverController.getRawButton(4)){
+                if(m_driverController.getXButton()){
+                        Indexer.getIndexer().setIndexerSpeed(1);
+                }
+                else{
+                        Indexer.getIndexer().setIndexerSpeed(0);
+                }
+
+                if(m_driverController.getRawButton(4) || buttonBox.getYButton()){
                         Intake.getballIntake().setPivotDirection(intakePivot.up);
                 }
-                else if(m_driverController.getRawButton(1)){
+                else if(m_driverController.getRawButton(1) || buttonBox.getAButton()){
                         Intake.getballIntake().setPivotDirection(intakePivot.down);
                 }
                 else {
@@ -78,6 +83,7 @@ public class driverInteraction {
                         }
                 toggleIndexer = !toggleIndexer;
                 }
+
 
 
                 
