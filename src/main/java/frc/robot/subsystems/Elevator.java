@@ -6,6 +6,7 @@ package frc.robot.subsystems;
 
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -19,6 +20,11 @@ public class Elevator extends SubsystemBase {
     TalonSRX elevatorMotor = new TalonSRX(Constants.elevatorMotorPin);
     TalonSRX elevatorMotor2 = new TalonSRX(Constants.elevatorMotorPin2);
     TalonSRXLinearDistance persistentDistanceMeasure = new TalonSRXLinearDistance(elevatorMotor, 1.0) ; // TODO: set values properly
+    public Elevator(){
+        elevatorMotor.setNeutralMode(NeutralMode.Brake);
+        elevatorMotor2.setNeutralMode(NeutralMode.Brake);
+    }
+
 
   
     private static Elevator elevator = new Elevator();

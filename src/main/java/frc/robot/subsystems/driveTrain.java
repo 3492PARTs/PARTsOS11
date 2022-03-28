@@ -91,6 +91,10 @@ public class driveTrain extends SubsystemBase {
 
   } 
 
+  public void arcadeDrive(double speed, double rotation){
+    m_Drive.arcadeDrive(speed, rotation);
+  }
+
   public encoderDistanceSparkMax getDriveTrainDistanceMeasure(){
     encoderDistanceSparkMax encoders = new encoderDistanceSparkMax(leftEncoders, rightEncoders,8.01 ,6*Math.PI);
     return encoders;

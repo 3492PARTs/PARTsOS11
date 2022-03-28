@@ -31,7 +31,7 @@ public class sDashBoard {
 
     public void TeleopUpdate(){
         SmartDashboard.putNumber("distance to target", Shooter.getballShooter().distFromFrontToTarget());
-        SmartDashboard.putBoolean("Distance to Target", (Shooter.getballShooter().distFromFrontToTarget() > 2.5 && Shooter.getballShooter().distFromFrontToTarget()< 3.33));
+        SmartDashboard.putBoolean("Distance to Target", (Shooter.getballShooter().distFromFrontToTarget() > 3 && Shooter.getballShooter().distFromFrontToTarget()< 5));
     }
 
 

@@ -72,8 +72,8 @@ public class Shooter {
      */
     public double distFromFrontToTarget(){
 
-        double heightOfTarget = 8.6666666;
-        return (heightOfTarget/Math.tan(Math.toDegrees(45+getTY()))) - (2 + 1.541);// to get relative to front;
+        double heightOfTarget = 8.66666666;
+        return (heightOfTarget/Math.tan(Math.toRadians(45+getTY()))) - (2 + 1.541);// to get relative to front;
         
 
     }

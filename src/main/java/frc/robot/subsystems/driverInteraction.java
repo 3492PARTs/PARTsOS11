@@ -30,11 +30,14 @@ public class driverInteraction {
                 else {
                         Elevator.getElevator().setElevatorSpeed(0);
                 }
+
+                
+
         }
 
         public void updateController() {
                 int driveMult = biFrontalDrive ? 1 : -1;
-                dTrain.move(driveMult * Math.pow(m_driverController.getRawAxis(1),3), driveMult * Math.pow(m_driverController.getRawAxis(5), 3 ));
+                dTrain.arcadeDrive(driveMult * m_driverController.getRawAxis(1), driveMult *m_driverController.getRawAxis(4));
 
                 if(m_driverController.getRawAxis(2) > 0.5){
                         Intake.getballIntake().setIntakeSpeed(-1);
@@ -42,15 +45,16 @@ public class driverInteraction {
                         Intake.getballIntake().setIntakeSpeed(0);
                 }
 
-   
-                if(m_driverController.getRawAxis(3) > .05) {
-                        Shooter.getballShooter().setShooterSpeed(1);
-                } else {
+                if(m_driverController.getRightBumper()){
+                        System.out.println(m_driverController.getRightBumper());
+                        Shooter.getballShooter().setShooterSpeed(.6);
+                }
+                else{
                         Shooter.getballShooter().setShooterSpeed(0);
                 }
 
-                if(m_driverController.getRawButton(6)){
-                        Shooter.getballShooter().setShooterSpeed(.6);
+                if(m_driverController.getLeftBumper()){
+                        Shooter.getballShooter().setShooterSpeed(1);
                 }
                 else{
                         Shooter.getballShooter().setShooterSpeed(0);
@@ -67,13 +71,16 @@ public class driverInteraction {
                 }
 
                 if(m_driverController.getRawButton(2)){
-                        if(toggleIndexer == true) {
+                        if(toggleIndexer) {
                                 Indexer.getIndexer().setIndexerSpeed(-1);
                         } else {
                                 Indexer.getIndexer().setIndexerSpeed(0);
                         }
-                        toggleIndexer = !toggleIndexer;
+                toggleIndexer = !toggleIndexer;
                 }
+
+
+                
 
                 if(m_driverController.getRawButton(7)){
                         this.biFrontalDrive = !biFrontalDrive;
