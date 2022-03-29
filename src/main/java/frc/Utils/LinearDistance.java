@@ -13,7 +13,7 @@ public class LinearDistance{
         this.distanceT = distanceGiver;
     }
 
-    double getDistance(){
+    public double getDistance(){
         return distanceT.getDistance();
     }
 
