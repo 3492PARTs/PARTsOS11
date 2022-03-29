@@ -2,14 +2,20 @@ package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import edu.wpi.first.wpilibj.AnalogInput;
 
+import edu.wpi.first.math.filter.MedianFilter;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import frc.robot.Constants;
 
 public class Shooter {
 
+
+    AnalogInput ultrasonic;
+    MedianFilter medianFilter = new MedianFilter(4);
     TalonSRX ShooterMotor = new TalonSRX(Constants.shooterMotorPin);
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
     NetworkTableEntry tx = table.getEntry("tx");
@@ -18,9 +24,16 @@ public class Shooter {
 
     Boolean isOn = false;
 
+    public double getUltrasonicDistance() {
+        double dist = (ultrasonic.getVoltage()) * 48.6111;
+            medianFilter.calculate(dist);
+        return dist; // in feet
+    }
 
     private Shooter(){
-        ShooterMotor.configClosedloopRamp(.3);
+        ultrasonic = new AnalogInput(0);
+        ShooterMotor.configClosedloopRamp(.2);
+    
     }
     private static Shooter ballShooter = new Shooter();
     public static Shooter getballShooter () {
@@ -42,6 +55,10 @@ public class Shooter {
         ShooterMotor.set(ControlMode.PercentOutput,speed);
 
     }
+    public void setRPMS(double speed){
+        ShooterMotor.set(ControlMode.Velocity,speed);
+
+    }
 
     public static boolean getShooterStatusLeft() {
         return false;
@@ -51,8 +68,16 @@ public class Shooter {
         return false;
     }
 
+    public void shootRPM(double velocity){
+        ShooterMotor.set(ControlMode.Velocity, velocity);
+    }
+
     public double getRPM(){
         return (ShooterMotor.getSelectedSensorVelocity() * 10) / 4096;
+    }
+
+    public double getRawRot(){
+        return ShooterMotor.getSelectedSensorVelocity();
     }
 
     public double getTX() {

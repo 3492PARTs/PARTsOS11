@@ -9,11 +9,15 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 
 public class Delay extends CommandBase {
-  double delay;
+  Double delay;
   long initTime;
   /** Creates a new Delay. */
   public Delay() {
     // Use addRequirements() here to declare subsystem dependencies.
+  }
+
+  public Delay(Double delay){
+    this.delay = delay;
   }
 
   // Called when the command is initially scheduled.
@@ -21,7 +25,7 @@ public class Delay extends CommandBase {
   public void initialize() {
     initTime = System.currentTimeMillis();
 
-    delay = 1000 *SmartDashboard.getNumber(Constants.SD_AUTO_DELAY, 0.0);
+    delay = SmartDashboard.getNumber(Constants.SD_AUTO_DELAY, 0.0);
   }
 
 

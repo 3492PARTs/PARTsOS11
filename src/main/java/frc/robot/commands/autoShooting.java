@@ -10,6 +10,7 @@ import frc.robot.subsystems.*;
 public class autoShooting extends CommandBase {
   double speed;
   long initTime;
+  boolean isVelocity = false;
   /** Creates a new autoShooting. */
   public autoShooting(double speed) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -17,16 +18,26 @@ public class autoShooting extends CommandBase {
     initTime = System.currentTimeMillis();
   }
 
+  public autoShooting(double speed, boolean isVelocity) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    this.speed = speed;
+    this.isVelocity = isVelocity;
+
+    initTime = System.currentTimeMillis();
+  }
+
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Shooter.getballShooter().setShooterSpeed(speed);
     initTime = System.currentTimeMillis();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    Shooter.getballShooter().setShooterSpeed(speed);
+    
   }
 
   // Called once the command ends or is interrupted.

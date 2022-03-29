@@ -6,7 +6,6 @@ package frc.robot.commands.Auto;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.Index;
 import frc.robot.commands.autoShooting;
 import frc.robot.subsystems.Indexer;
 

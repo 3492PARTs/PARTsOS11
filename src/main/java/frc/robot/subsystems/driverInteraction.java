@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import frc.robot.Constants.intakePivot;
 
 public class driverInteraction { 
@@ -24,7 +25,7 @@ public class driverInteraction {
         }
         
         public void updateButtonbox(){
-                if(buttonBox.getXButton()){
+                if((buttonBox.getPOV() == 0)|| (m_driverController.getPOV() == 0)){
                         Elevator.getElevator().setElevatorSpeed(-1);
                 }
                 else {
@@ -36,12 +37,16 @@ public class driverInteraction {
                 
 
         }
+        public XboxController getButtonBox(){
+                return buttonBox;
+        }
+
 
         public void updateController() {
                 int driveMult = biFrontalDrive ? 1 : -1;
                 dTrain.arcadeDrive(driveMult * m_driverController.getRawAxis(1), driveMult *m_driverController.getRawAxis(4));
 
-                if(m_driverController.getRawAxis(2) > 0.5){
+                if((m_driverController.getRawAxis(2) > 0.5 )|| (buttonBox.getRawAxis(2) > .5)){
                         Intake.getballIntake().setIntakeSpeed(-1);
                 } else {
                         Intake.getballIntake().setIntakeSpeed(0);
@@ -52,7 +57,7 @@ public class driverInteraction {
                         Shooter.getballShooter().setShooterSpeed(.6);
                 }
                 else if(m_driverController.getRightTriggerAxis() > .5){
-                        Shooter.getballShooter().setShooterSpeed(1);
+                        Shooter.getballShooter().setShooterSpeed(.96);
                 }
                 else{
                         Shooter.getballShooter().setShooterSpeed(0);
@@ -63,6 +68,14 @@ public class driverInteraction {
                 }
                 else{
                         Indexer.getIndexer().setIndexerSpeed(0);
+                }
+                if(Shooter.getballShooter().getRPM() < -64){
+                        m_driverController.setRumble(RumbleType.kLeftRumble, 1);
+                        m_driverController.setRumble(RumbleType.kRightRumble, 1);
+                }
+                else{
+                        m_driverController.setRumble(RumbleType.kLeftRumble, 0);
+                        m_driverController.setRumble(RumbleType.kRightRumble, 0); 
                 }
 
                 if(m_driverController.getRawButton(4) || buttonBox.getYButton()){

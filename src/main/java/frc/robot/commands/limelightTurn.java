@@ -16,8 +16,8 @@ public class limelightTurn extends CommandBase {
   /** Creates a new limelightTurn. */ 
   frc.robot.subsystems.Shooter Shooter; // make a shooter object
   driveTrain dTrain = driveTrain.getM_DriveTrain(); // get the driveTrain
-  
-  PIDController pidTurn = new PIDController(Constants.PIDTurnConstants[0], Constants.PIDTurnConstants[1], Constants.PIDTurnConstants[2]);
+  long initTime;
+  PIDController pidTurn = new PIDController(Constants.PIDLimelightConstants[0], Constants.PIDLimelightConstants[1], Constants.PIDLimelightConstants[2]);
   public limelightTurn() {
     // Use addRequirements() here to declare subsystem dependencies.
   
@@ -28,6 +28,10 @@ public class limelightTurn extends CommandBase {
   public void initialize() {
     Shooter = frc.robot.subsystems.Shooter.getballShooter(); // get the shooter
      gyroOffset = dTrain.getAngle();
+    initTime = System.currentTimeMillis();
+
+
+
 
 
     pidTurn.setSetpoint(Shooter.getTX());
@@ -38,7 +42,7 @@ public class limelightTurn extends CommandBase {
   public void execute() {
     
    double Output = pidTurn.calculate(dTrain.getAngle() - gyroOffset);
-   MathUtil.clamp(Output, -.3, .3);
+   MathUtil.clamp(Output, -.35, .35);
     driveTrain.getM_DriveTrain().move(-Output, Output);
   
 
@@ -55,7 +59,7 @@ public class limelightTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return pidTurn.atSetpoint() && (dTrain.gyroVelocity() > 10); // returns true or false based on whether the tX value is less than or greater than 20
+    return (pidTurn.atSetpoint() && (dTrain.gyroVelocity() > 10)) || (System.currentTimeMillis() - initTime )> 3000; // returns true or false based on whether the tX value is less than or greater than 20
   }
 
 

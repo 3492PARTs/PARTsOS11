@@ -15,6 +15,7 @@ public class sDashBoard {
 
     sDashBoard(){
         CameraServer.startAutomaticCapture(0);
+        CameraServer.startAutomaticCapture(1);
     }
 
 
@@ -31,7 +32,8 @@ public class sDashBoard {
 
     public void TeleopUpdate(){
         SmartDashboard.putNumber("distance to target", Shooter.getballShooter().distFromFrontToTarget());
-        SmartDashboard.putBoolean("Distance to Target", (Shooter.getballShooter().distFromFrontToTarget() > 3 && Shooter.getballShooter().distFromFrontToTarget()< 5));
+        SmartDashboard.putBoolean("Distance to Target", (Shooter.getballShooter().distFromFrontToTarget() > 4 && Shooter.getballShooter().distFromFrontToTarget()< 6));
+        SmartDashboard.putNumber("RAW ROTS", Shooter.getballShooter().getRawRot());
     }
 
 

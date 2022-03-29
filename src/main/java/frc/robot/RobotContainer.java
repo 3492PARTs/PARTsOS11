@@ -5,10 +5,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.limelightTurn;
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
@@ -18,6 +20,7 @@ import frc.robot.commands.Auto.turnRobo;
 import frc.robot.commands.Auto.twoBallAuto;
 import frc.robot.commands.Auto.twoBallDiagonal;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.driverInteraction;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -56,13 +59,17 @@ public class RobotContainer {
 
   }
 
+  JoystickButton limelightbButton;
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    limelightbButton = new JoystickButton(driverInteraction.getDriverInteraction().getButtonBox(), 6);
+    limelightbButton.whenPressed(new limelightTurn());
+  }
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.

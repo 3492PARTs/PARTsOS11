@@ -7,7 +7,6 @@ package frc.robot.commands.Auto;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.Index;
 import frc.robot.commands.autoShooting;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -18,6 +17,6 @@ public class twoBallDiagonal extends SequentialCommandGroup {
   public twoBallDiagonal() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ParallelCommandGroup( new ParallelRaceGroup(new autoShooting(1), new Index(true)), new turnRobo(15), new LowerIntake()), new ParallelRaceGroup(new PIDDrive(40, .8), new IntakeCom()), new PIDDrive(-40, .9), new ParallelCommandGroup(new turnRobo(-15), new ParallelRaceGroup(new autoShooting(1), new Index(), new IntakeCom()) ));
+    addCommands(new ParallelCommandGroup( new ParallelRaceGroup(new autoShooting(1), new Index(true)),  new LowerIntake()), new turnRobo(15), new ParallelRaceGroup(new PIDDrive(40, .8), new IntakeCom()), new PIDDrive(-40, .9), new ParallelCommandGroup(new turnRobo(-15), new ParallelRaceGroup(new autoShooting(1), new Index(), new IntakeCom()) ));
   }
 }
