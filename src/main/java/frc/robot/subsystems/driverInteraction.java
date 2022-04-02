@@ -54,7 +54,7 @@ public class driverInteraction {
 
                 if(m_driverController.getRightBumper()){
                         System.out.println(m_driverController.getRightBumper());
-                        Shooter.getballShooter().setShooterSpeed(.6);
+                        Shooter.getballShooter().setShooterSpeed(.55);
                 }
                 else if(m_driverController.getRightTriggerAxis() > .5){
                         Shooter.getballShooter().setShooterSpeed(.96);

@@ -12,10 +12,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.limelightTurn;
+import frc.robot.commands.Auto.LowGoalButGood;
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
+import frc.robot.commands.Auto.TurnRightandTaxi;
 import frc.robot.commands.Auto.TwoBallLow;
 import frc.robot.commands.Auto.flipFast;
+import frc.robot.commands.Auto.shootScootSteal;
 import frc.robot.commands.Auto.turnRobo;
 import frc.robot.commands.Auto.twoBallAuto;
 import frc.robot.commands.Auto.twoBallDiagonal;
@@ -43,13 +46,15 @@ public class RobotContainer {
 
 
       SmartDashboard.putData("Choose Autonomous Mode", m_chooser);
-      m_chooser.setDefaultOption("Two Ball auto", new twoBallAuto());
+      m_chooser.addOption("TurnLEft", new twoBallAuto());
       m_chooser.addOption("SHOOT and SCoot", new ShootNScoot());
-      m_chooser.addOption("PID TUNE", new PIDDrive(-48)); // move forward 48 in
-      m_chooser.addOption("TUNETURN",new turnRobo(5));
-      m_chooser.addOption("Two ball diagonal", new twoBallDiagonal());
-      m_chooser.addOption("flipFast", new flipFast());
+      m_chooser.addOption("Turn Right Hangar", new TurnRightandTaxi());
+      m_chooser.setDefaultOption("low goal but good",  new LowGoalButGood());
+      //m_chooser.addOption("PID TUNE", new PIDDrive(-48)); // move forward 48 in
+      //m_chooser.addOption("TUNETURN",new turnRobo(5));
+      m_chooser.addOption("Turn right / diagonal", new twoBallDiagonal());
       m_chooser.addOption("low goal 2", new TwoBallLow());
+      m_chooser.addOption("scoot and steal", new shootScootSteal());
 
 
 

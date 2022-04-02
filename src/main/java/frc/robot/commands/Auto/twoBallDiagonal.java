@@ -15,8 +15,15 @@ import frc.robot.commands.autoShooting;
 public class twoBallDiagonal extends SequentialCommandGroup {
   /** Creates a new twoBallDiagonal. */
   public twoBallDiagonal() {
+    //positive is right
+    //positive is right
+    //positive is right
+    //positive is right
+    //positive is right
+
+
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new ParallelCommandGroup( new ParallelRaceGroup(new autoShooting(1), new Index(true)),  new LowerIntake()), new turnRobo(15), new ParallelRaceGroup(new PIDDrive(40, .8), new IntakeCom()), new PIDDrive(-40, .9), new ParallelCommandGroup(new turnRobo(-15), new ParallelRaceGroup(new autoShooting(1), new Index(), new IntakeCom()) ));
+    addCommands(new ParallelCommandGroup( new ParallelRaceGroup(new autoShooting(1), new Index(true)),  new LowerIntake()), new turnRobo(15) , new ParallelRaceGroup(new PIDDrive(40, .8), new IntakeCom()), new PIDDrive(-40, .9), new ParallelCommandGroup(new turnRobo(-15), new ParallelRaceGroup(new autoShooting(1), new Index(), new IntakeCom()) ));
   }
 }

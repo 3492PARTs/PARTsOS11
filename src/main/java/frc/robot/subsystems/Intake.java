@@ -16,7 +16,7 @@ public class Intake {
     TalonSRX intakeMotor = new TalonSRX(Constants.intakeMotorPin);
     TalonSRX intakePivot = new TalonSRX(Constants.intakePivotPin);
     private Intake(){
-    
+    intakePivot.setNeutralMode(NeutralMode.Brake);
     }
     private static Intake ballIntake = new Intake();
     public static Intake getballIntake () {

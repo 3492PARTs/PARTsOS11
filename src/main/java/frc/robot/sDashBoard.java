@@ -32,7 +32,7 @@ public class sDashBoard {
 
     public void TeleopUpdate(){
         SmartDashboard.putNumber("distance to target", Shooter.getballShooter().distFromFrontToTarget());
-        SmartDashboard.putBoolean("Distance to Target", (Shooter.getballShooter().distFromFrontToTarget() > 4 && Shooter.getballShooter().distFromFrontToTarget()< 6));
+        SmartDashboard.putBoolean("Distance to Target", (Shooter.getballShooter().distFromFrontToTarget() > 6 && Shooter.getballShooter().distFromFrontToTarget()< 7));
         SmartDashboard.putNumber("RAW ROTS", Shooter.getballShooter().getRawRot());
     }
 

@@ -12,6 +12,10 @@ import frc.robot.subsystems.driveTrain;
 
 public class turnRobo extends CommandBase {
   double angle;
+  //positive is right
+  //positive is right
+  //positive is right
+  //positive is right
   double initAngle;
   double[] pidConstants = Constants.PIDTurnConstants;
   driveTrain m_DriveTrain = driveTrain.getM_DriveTrain();
