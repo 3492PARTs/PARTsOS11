@@ -10,16 +10,23 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Utils.encoderDistanceSparkMax;
+import frc.Utils.Units.imperialToMetric;
 import frc.robot.Constants;
 
 public class driveTrain extends SubsystemBase {
 
   int[] CANLeft = Constants.driveTrainLeftSideCANIds;
   int[] CANRight = Constants.driveTrainRightSideCANIds;
+
+
 
   CANSparkMax left1 = new CANSparkMax(CANLeft[0], MotorType.kBrushless);
   CANSparkMax left2 = new CANSparkMax(CANLeft[1], MotorType.kBrushless);
@@ -32,7 +39,7 @@ public class driveTrain extends SubsystemBase {
   RelativeEncoder[] leftEncoders = {left1.getEncoder(), left2.getEncoder(), left3.getEncoder()};
   RelativeEncoder[] rightEncoders = {right1.getEncoder(), right2.getEncoder(), right3.getEncoder()};
 
-
+  DifferentialDriveOdometry differentialDriveOdometry;
 
   
 
@@ -80,6 +87,8 @@ public class driveTrain extends SubsystemBase {
     right2.setOpenLoopRampRate(rampRate);
     right3.setOpenLoopRampRate(rampRate);
 
+
+    differentialDriveOdometry = new DifferentialDriveOdometry(new Rotation2d(getAngle()));
   }
   // Singleton Pattern use this, DO NOT make a new instance of a subsystem
   public static driveTrain getM_DriveTrain() {
@@ -122,8 +131,28 @@ public class driveTrain extends SubsystemBase {
   }
   
 
+  // Trajectories and kinematics code
+
+  public Pose2d getPose(){
+    return differentialDriveOdometry.getPoseMeters();
+  }
+
+  public DifferentialDriveWheelSpeeds getWheelSpeeds(){
+    return new DifferentialDriveWheelSpeeds(getLeftVelocity(), getRightVelocity());
+  }
+
+  public void driveVolts(double leftVolts, double rightVolts){
+    leftControllerGroup.setVoltage(leftVolts);
+    rightControllerGroup.setVoltage(rightVolts);
+    m_Drive.feed();
+  }
+
+  
+
   @Override
   public void periodic() {
+    
     // This method will be called once per scheduler run
+    differentialDriveOdometry.update(new Rotation2d(getAngle()), imperialToMetric.inchesToMeters(getDriveTrainDistanceMeasure().getGroupOneAverage()), imperialToMetric.inchesToMeters(getDriveTrainDistanceMeasure().getGroupTwoAverage()));
   }
 }
