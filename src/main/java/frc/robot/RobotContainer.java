@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.Utils.controls.beanieController;
+import frc.robot.Constants.intakePivot;
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
 import frc.robot.commands.Auto.TwoBallLow;
@@ -20,7 +21,10 @@ import frc.robot.commands.Auto.turnRobo;
 import frc.robot.commands.Auto.twoBallAuto;
 import frc.robot.commands.Auto.twoBallDiagonal;
 import frc.robot.commands.teleop.elevatorUp;
+import frc.robot.commands.teleop.indexCom;
+import frc.robot.commands.teleop.intakePivotCom;
 import frc.robot.commands.teleop.limelightTurn;
+import frc.robot.commands.teleop.shootCom;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.driverInteraction;
 
@@ -76,6 +80,16 @@ public class RobotContainer {
 
     operatorController.getRightBumper().whileHeld(new limelightTurn());
     operatorController.getDpadUp().whileHeld(new elevatorUp());
+
+    driverController.getRightBumper().whileHeld(new shootCom(.65)); // out low
+    driverController.getRightTriggerButton(.2).whileHeld(new shootCom(1)); // out high
+    driverController.getX().whileHeld(new indexCom(1)); // in
+    driverController.getB().whileHeld(new indexCom(-1)); // out
+    driverController.getY().whileHeld(new intakePivotCom(intakePivot.up));
+    driverController.getA().whileHeld(new intakePivotCom(intakePivot.down));
+
+    
+
 
     //TODO: bind new commands to buttons
   }
