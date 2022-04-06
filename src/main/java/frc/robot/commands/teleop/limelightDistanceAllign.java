@@ -20,12 +20,13 @@ public class limelightDistanceAllign extends CommandBase {
   @Override
   public void initialize() {
     initDist = Shooter.getballShooter().distFromFrontToTarget();
+    new SequentialCommandGroup(new PIDDrive((8 * 12) - initDist), new limelightTurn());
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    new SequentialCommandGroup(new PIDDrive((8 * 12) - initDist), new limelightTurn()); // 8 ft is around sweet spot and make sure were alligned
+     // 8 ft is around sweet spot and make sure were alligned
   }
 
   // Called once the command ends or is interrupted.
