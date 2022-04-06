@@ -12,6 +12,13 @@ public class triggerButton extends Button {
     XboxController controller;
     int axis;
     double threshold;
+
+    /**
+     * 
+     * @param controller the controller the button is on
+     * @param axis the axis that the command will be bound to
+     * @param threshold the minimum value to trigger the command
+     */
     triggerButton(XboxController controller, int axis, double threshold){
         this.controller = controller;
         this.axis = axis;

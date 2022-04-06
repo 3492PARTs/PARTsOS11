@@ -27,6 +27,8 @@ public class beanieController {
 
     private dpadButton dpadUp;
 
+
+
     public beanieController(int port){
         controller = new XboxController(port);
 

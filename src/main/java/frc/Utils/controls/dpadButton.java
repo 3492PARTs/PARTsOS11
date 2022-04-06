@@ -11,6 +11,11 @@ import edu.wpi.first.wpilibj2.command.button.Button;
 public class dpadButton extends Button{
     int angle;
     XboxController controller;
+    /**
+     * 
+     * @param controller the controller the command should be bound to
+     * @param angle the angle of the POV button 0 should be up
+     */
     public dpadButton(XboxController controller, int angle){
         this.angle = angle;
         this.controller = controller;
