@@ -4,20 +4,21 @@
 
 package frc.Utils.Util;
 
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 
 /** Add your docs here. */
-public class SparkMaxEncoderValuer implements EncoderValueInterface{
-    CANSparkMax sparkMax;
-    SparkMaxEncoderValuer(CANSparkMax sparkMax){
-        this.sparkMax = sparkMax;
+public class TalonSRXDistanceValue implements EncoderValueInterface<TalonSRX>{
+    TalonSRX talonSRX;
+    TalonSRXDistanceValue(CANSparkMax sparkMax){
+        this.talonSRX = talonSRX;
     }
 
     @Override
     public double getDistance() {
 
-        return sparkMax.getEncoder().getPosition();
+        return talonSRX.getSelectedSensorPosition();
     
     }
     
