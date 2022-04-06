@@ -18,7 +18,6 @@ import frc.robot.subsystems.driverInteraction;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  driverInteraction dInteraction = driverInteraction.getDriverInteraction();
 
   private RobotContainer m_robotContainer;
 
@@ -96,8 +95,7 @@ public class Robot extends TimedRobot {
     sDashBoard.getsDashBoard().alwaysUpdate();
     sDashBoard.getsDashBoard().TeleopUpdate();
     
-    dInteraction.updateButtonbox();
-    dInteraction.updateController();
+
 
   
   }
