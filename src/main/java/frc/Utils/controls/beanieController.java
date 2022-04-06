@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.Utils;
+package frc.Utils.controls;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -25,6 +25,8 @@ public class beanieController {
 
     private JoystickButton leftBumper;
 
+    private dpadButton dpadUp;
+
     public beanieController(int port){
         controller = new XboxController(port);
 
@@ -36,6 +38,12 @@ public class beanieController {
         leftBumper = new JoystickButton(controller, 6);
         back = new JoystickButton(controller, 7);
         start = new JoystickButton(controller, 8);
+
+        dpadUp = new dpadButton(controller, 0);
+        
+    }
+    public XboxController getController(){
+        return controller;
     }
 
     public JoystickButton getA() {
@@ -61,6 +69,9 @@ public class beanieController {
     }
     public JoystickButton getBack() {
         return back;
+    }
+    public dpadButton getDpadUp() {
+        return dpadUp;
     }
     public double getLeftXAxis(){
         return controller.getRawAxis(0);
