@@ -4,8 +4,6 @@
 
 package frc.robot.commands.teleop;
 
-import javax.swing.text.html.parser.DTD;
-
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;
