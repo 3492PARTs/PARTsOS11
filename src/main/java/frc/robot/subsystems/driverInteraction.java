@@ -27,10 +27,10 @@ public class driverInteraction {
         public void updateButtonbox(){
                 if((buttonBox.getPOV() == 0)|| (m_driverController.getPOV() == 0)){
                         Elevator.getElevator().setElevatorSpeed(-1);
-                }
+                } //made into command TODO: bind command
                 else {
                         Elevator.getElevator().setElevatorSpeed(0);
-                }
+                }//made into command TODO: bind command
 
 
 
@@ -50,22 +50,22 @@ public class driverInteraction {
                         Intake.getballIntake().setIntakeSpeed(-1);
                 } else {
                         Intake.getballIntake().setIntakeSpeed(0);
-                }
+                } //made into command TODO: bind command
 
                 if(m_driverController.getRightBumper()){
                         System.out.println(m_driverController.getRightBumper());
                         Shooter.getballShooter().setShooterSpeed(.6);
-                }
+                } //made into command TODO: bind command
                 else if(m_driverController.getRightTriggerAxis() > .5){
                         Shooter.getballShooter().setShooterSpeed(.96);
-                }
+                }//made into command TODO: bind command
                 else{
                         Shooter.getballShooter().setShooterSpeed(0);
-                }
+                }//made into command TODO: bind command
 
                 if(m_driverController.getXButton()){
                         Indexer.getIndexer().setIndexerSpeed(1);
-                }
+                }//made into command TODO: bind command
                 else{
                         Indexer.getIndexer().setIndexerSpeed(0);
                 }
@@ -80,20 +80,20 @@ public class driverInteraction {
 
                 if(m_driverController.getRawButton(4) || buttonBox.getYButton()){
                         Intake.getballIntake().setPivotDirection(intakePivot.up);
-                }
+                } //made into command TODO: bind command
                 else if(m_driverController.getRawButton(1) || buttonBox.getAButton()){
                         Intake.getballIntake().setPivotDirection(intakePivot.down);
-                }
+                }//made into command TODO: bind command
                 else {
                         Intake.getballIntake().setPivotDirection(intakePivot.stop);
-                }
+                }//made into command TODO: bind command
 
                 if(m_driverController.getRawButton(2)){
                         if(toggleIndexer) {
                                 Indexer.getIndexer().setIndexerSpeed(-1);
                         } else {
                                 Indexer.getIndexer().setIndexerSpeed(0);
-                        }
+                        }//made into command TODO: bind command
                 toggleIndexer = !toggleIndexer;
                 }
 
