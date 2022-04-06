@@ -137,6 +137,10 @@ public class driveTrain extends SubsystemBase {
     return differentialDriveOdometry.getPoseMeters();
   }
 
+  public void resetPose(Pose2d resetPos){
+    differentialDriveOdometry.resetPosition(resetPos, new Rotation2d(getAngle()));    
+  }
+
   public DifferentialDriveWheelSpeeds getWheelSpeeds(){
     return new DifferentialDriveWheelSpeeds(getLeftVelocity(), getRightVelocity());
   }

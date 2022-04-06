@@ -58,9 +58,13 @@ public class Trajectory extends SequentialCommandGroup {
            driveTrain.getM_DriveTrain()::driveVolts,
             driveTrain.getM_DriveTrain());
 
+      driveTrain.getM_DriveTrain().resetPose(testTrajectory.getInitialPose());
+
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
+
+
       ramseteCommand.andThen(() -> driveTrain.getM_DriveTrain().driveVolts(0, 0)));
        
 
