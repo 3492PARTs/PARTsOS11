@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.limelightTurn;
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
 import frc.robot.commands.Auto.TwoBallLow;
@@ -19,6 +18,7 @@ import frc.robot.commands.Auto.flipFast;
 import frc.robot.commands.Auto.turnRobo;
 import frc.robot.commands.Auto.twoBallAuto;
 import frc.robot.commands.Auto.twoBallDiagonal;
+import frc.robot.commands.teleop.limelightTurn;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.driverInteraction;
 
@@ -69,6 +69,8 @@ public class RobotContainer {
   private void configureButtonBindings() {
     limelightbButton = new JoystickButton(driverInteraction.getDriverInteraction().getButtonBox(), 6);
     limelightbButton.whenPressed(new limelightTurn());
+
+    //TODO: bind new commands to buttons
   }
 
   /**
