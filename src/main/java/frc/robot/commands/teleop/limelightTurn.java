@@ -57,7 +57,7 @@ public class limelightTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (pidTurn.atSetpoint() && (dTrain.gyroVelocity() > 10)) || (System.currentTimeMillis() - initTime )> 3000; // returns true or false based on whether the tX value is less than or greater than 20
+    return (pidTurn.atSetpoint() && (dTrain.gyroVelocity() > 10)); // returns true or false based on whether the tX value is less than or greater than 20
   }
 
 
