@@ -46,9 +46,10 @@ public class EncoderGroup {
         double lengthWithoutZeroes = 0;
         double sd = sd();
         for (int i = 0; i < totals.length; i++) {
-                if((Math.abs(totals[i]) > (2 * sd * mean)) ||(Math.abs(totals[i]) < (2 * sd * mean) )){
+                if((Math.abs(totals[i]) > (2 * sd * mean)) || (Math.abs(totals[i]) < (2 * sd * mean) )){
                     totals[i] = 0;
                 }
+                sum += totals[i];
         }
 
         for (double i : totals) {
