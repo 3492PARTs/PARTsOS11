@@ -18,6 +18,7 @@ public class triggerButton extends Button {
      * @param controller the controller the button is on
      * @param axis the axis that the command will be bound to
      * @param threshold the minimum value to trigger the command
+     * @apiNote this can technicaly be used for joysticks too with no change but this is highly discouraged since it is evil
      */
     triggerButton(XboxController controller, int axis, double threshold){
         this.controller = controller;

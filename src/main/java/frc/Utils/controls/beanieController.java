@@ -100,10 +100,12 @@ public class beanieController {
         return controller.getRawAxis(3);
     }
 
-    public void rumble(){
-        controller.setRumble(RumbleType.kLeftRumble, 1);
-        controller.setRumble(RumbleType.kLeftRumble, 2);
+    public void Rumbling(Rumbler rumbler){
+        controller.setRumble(RumbleType.kLeftRumble, rumbler.getRumbler());
+        controller.setRumble(RumbleType.kLeftRumble, rumbler.getRumbler());
     }
+
+    
 
 
 }
