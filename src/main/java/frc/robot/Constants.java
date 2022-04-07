@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static int elevatorMotorPin = 5; //TODO: set value
+    public static int elevatorMotorPin = 5; 
     public static int elevatorMotorPin2 = 6;
 
     public static Object speed;

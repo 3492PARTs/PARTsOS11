@@ -4,8 +4,6 @@
 
 package frc.robot.commands.Auto;
 
-import com.ctre.phoenix.Util;
-
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj2.command.CommandBase;

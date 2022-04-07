@@ -1,10 +1,5 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
-import frc.robot.Constants.intakePivot;
-
 public class driverInteraction { 
                 //Joystick leftJoystick = new Joystick(1); // get the left joystick
                 //Joystick rightJoystick = new Joystick(0); // get the right joystick
