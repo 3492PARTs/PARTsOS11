@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.limelightTurn;
+import frc.robot.commands.Auto.BackUp;
 import frc.robot.commands.Auto.LowGoalButGood;
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
@@ -55,6 +56,7 @@ public class RobotContainer {
       m_chooser.addOption("Turn right / diagonal", new twoBallDiagonal());
       m_chooser.addOption("low goal 2", new TwoBallLow());
       m_chooser.addOption("scoot and steal", new shootScootSteal());
+      m_chooser.addOption("Reverse shoot", new BackUp());
 
 
 
