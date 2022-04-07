@@ -10,13 +10,13 @@ import frc.Utils.Util.EncoderValueInterface;
 
 /** Add your docs here. */
 public class LinearDistance{
-    EncoderValueInterface[] groupOne, groupTwo;
+    EncoderValueInterface<?>[] groupOne, groupTwo;
     double[] initialGroupOne, initialGroupTwo ;
     double wheelCircumference;
     double gearRatio;
 
     double[] groupOneTotals, groupTwoTotals;
-    LinearDistance(EncoderValueInterface[] groupOne, EncoderValueInterface[] groupTwo, double wheelCircumference, double gearRatio){
+    LinearDistance(EncoderValueInterface<?>[] groupOne, EncoderValueInterface<?>[] groupTwo, double wheelCircumference, double gearRatio){
         this.groupOne = groupOne;
         this.groupTwo = groupTwo;
         this.gearRatio = gearRatio;

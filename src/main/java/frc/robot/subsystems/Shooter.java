@@ -8,7 +8,6 @@ import edu.wpi.first.math.filter.MedianFilter;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import frc.robot.Constants;
 
 public class Shooter {
