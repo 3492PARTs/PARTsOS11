@@ -15,6 +15,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Utils.encoderDistanceSparkMax;
@@ -49,7 +50,7 @@ public class driveTrain extends SubsystemBase {
   DifferentialDrive m_Drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 // right positive and continous
 //left negative and continous
-  AHRS gyro = new AHRS();
+  Gyro gyro = new AHRS();
 /**
  * 
  * @return right positive and to infinity, left negative to negative infinity.
@@ -65,10 +66,7 @@ public class driveTrain extends SubsystemBase {
    * @return the angular velocity of the robot
    */
   public double gyroVelocity(){
-    double angVel = 1000* ((gyro.getAngle() - prevAngle) / ((System.currentTimeMillis() - prevTime)));
-    prevTime = System.currentTimeMillis();
-    prevAngle = gyro.getAngle();
-    return angVel;
+    return gyro.getRate();
 
   }
 
