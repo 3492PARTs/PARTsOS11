@@ -20,12 +20,14 @@ import frc.robot.commands.Auto.flipFast;
 import frc.robot.commands.Auto.turnRobo;
 import frc.robot.commands.Auto.twoBallAuto;
 import frc.robot.commands.Auto.twoBallDiagonal;
+import frc.robot.commands.teleop.driveControllerCom;
 import frc.robot.commands.teleop.elevatorUp;
 import frc.robot.commands.teleop.indexCom;
 import frc.robot.commands.teleop.intakePivotCom;
 import frc.robot.commands.teleop.limelightTurn;
 import frc.robot.commands.teleop.shootCom;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.driveTrain;
 import frc.robot.subsystems.driverInteraction;
 
 /**
@@ -60,6 +62,8 @@ public class RobotContainer {
       m_chooser.addOption("low goal 2", new TwoBallLow());
 
 
+      driveTrain.getM_DriveTrain().setDefaultCommand(new driveControllerCom(driverController));
+
 
 
 
@@ -87,6 +91,8 @@ public class RobotContainer {
     driverController.getB().whileHeld(new indexCom(-1)); // out
     driverController.getY().whileHeld(new intakePivotCom(intakePivot.up));
     driverController.getA().whileHeld(new intakePivotCom(intakePivot.down));
+
+    
 
     
 

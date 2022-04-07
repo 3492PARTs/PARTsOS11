@@ -18,7 +18,7 @@ public class limelightTurn extends CommandBase {
   PIDController pidTurn = new PIDController(Constants.PIDLimelightConstants[0], Constants.PIDLimelightConstants[1], Constants.PIDLimelightConstants[2]);
   public limelightTurn() {
     // Use addRequirements() here to declare subsystem dependencies.
-  
+      addRequirements(driveTrain.getM_DriveTrain());
   }
   double gyroOffset;
   // Called when the command is initially scheduled.
