@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
+import edu.wpi.first.math.filter.MedianFilter;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -55,15 +56,12 @@ public class Shooter {
         return (ShooterMotor.getSelectedSensorVelocity() * 10) / 4096;
     }
 
-<<<<<<< Updated upstream
-=======
     public double getRawRot(){
         return ShooterMotor.getSelectedSensorVelocity();
     }
 
 
     MedianFilter limeLightFilterx = new MedianFilter(5); // at 90 fps 5/18th of a second shouldn't be a lot of latency can maybe be a rolling average it needs to be tested still
->>>>>>> Stashed changes
     public double getTX() {
             
         return limeLightFilterx.calculate(tx.getDouble(0));
