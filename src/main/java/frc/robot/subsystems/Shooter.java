@@ -55,12 +55,23 @@ public class Shooter {
         return (ShooterMotor.getSelectedSensorVelocity() * 10) / 4096;
     }
 
-    public double getTX() {
-        return tx.getDouble(0);
+<<<<<<< Updated upstream
+=======
+    public double getRawRot(){
+        return ShooterMotor.getSelectedSensorVelocity();
     }
 
+
+    MedianFilter limeLightFilterx = new MedianFilter(5); // at 90 fps 5/18th of a second shouldn't be a lot of latency can maybe be a rolling average it needs to be tested still
+>>>>>>> Stashed changes
+    public double getTX() {
+            
+        return limeLightFilterx.calculate(tx.getDouble(0));
+    }
+
+    MedianFilter limeLightFiltery = new MedianFilter(5);
     public double getTY(){
-        return ty.getDouble(0);
+        return limeLightFilterx.calculate(ty.getDouble(0));
     }
 
     public double getTA(){
@@ -72,8 +83,9 @@ public class Shooter {
      */
     public double distFromFrontToTarget(){
 
+        double heightOfLimeLightOffGround = 0;//TODO:measure Value
         double heightOfTarget = 8.66666666;
-        return (heightOfTarget/Math.tan(Math.toRadians(43 + getTY()))) - (2 + 1.541);// to get relative to front;
+        return ((heightOfTarget - heightOfLimeLightOffGround)/Math.tan(Math.toRadians(43 + getTY()))) - (2 + 1.541);// to get relative to front;
         
 
     }
