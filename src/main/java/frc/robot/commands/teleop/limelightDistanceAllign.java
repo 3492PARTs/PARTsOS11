@@ -19,12 +19,7 @@ public class limelightDistanceAllign extends SequentialCommandGroup {
     addCommands(new PIDDrive((8 * 12) - initDist), new limelightTurn());
   }
 
-  // Called when the command is initially scheduled.
-  @Override
-  public void initialize() {
-    initDist = Shooter.getballShooter().distFromFrontToTarget();
-    new SequentialCommandGroup(new PIDDrive((8 * 12) - initDist), new limelightTurn());
-  }
 
-  
+
+
 }
