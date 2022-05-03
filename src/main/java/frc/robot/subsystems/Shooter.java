@@ -8,10 +8,10 @@ import edu.wpi.first.math.filter.MedianFilter;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import frc.robot.Constants;
 
 public class Shooter {
+
 
 
     AnalogInput ultrasonic;
@@ -97,8 +97,9 @@ public class Shooter {
      */
     public double distFromFrontToTarget(){
 
+
         double heightOfTarget = 8.66666666;
-        return (heightOfTarget/Math.tan(Math.toRadians(43 + getTY()))) - (2 + 1.541);// to get relative to front;
+        return ((heightOfTarget)/Math.tan(Math.toRadians(43 + getTY()))) - (2 + 1.541);// to get relative to front;
         
 
     }

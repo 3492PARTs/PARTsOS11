@@ -5,15 +5,19 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+
 import frc.robot.commands.limelightTurn;
 import frc.robot.commands.Auto.BackUp;
 import frc.robot.commands.Auto.LowGoalButGood;
+
+import frc.Utils.controls.beanieController;
+import frc.robot.Constants.intakePivot;
+
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
 import frc.robot.commands.Auto.TurnRightandTaxi;
@@ -23,8 +27,14 @@ import frc.robot.commands.Auto.shootScootSteal;
 import frc.robot.commands.Auto.turnRobo;
 import frc.robot.commands.Auto.twoBallAuto;
 import frc.robot.commands.Auto.twoBallDiagonal;
+import frc.robot.commands.teleop.driveControllerCom;
+import frc.robot.commands.teleop.elevatorUp;
+import frc.robot.commands.teleop.indexCom;
+import frc.robot.commands.teleop.intakePivotCom;
+import frc.robot.commands.teleop.limelightTurn;
+import frc.robot.commands.teleop.shootCom;
 import frc.robot.subsystems.ExampleSubsystem;
-import frc.robot.subsystems.driverInteraction;
+import frc.robot.subsystems.driveTrain;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -38,6 +48,8 @@ public class RobotContainer {
   Command com;
   
   private SendableChooser<Command> m_chooser = new SendableChooser<>();
+  beanieController driverController = new beanieController(0);
+  beanieController operatorController = new beanieController(1);
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -59,6 +71,8 @@ public class RobotContainer {
       m_chooser.addOption("Reverse shoot", new BackUp());
 
 
+      driveTrain.getM_DriveTrain().setDefaultCommand(new driveControllerCom(driverController));
+
 
 
 
@@ -74,8 +88,25 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    limelightbButton = new JoystickButton(driverInteraction.getDriverInteraction().getButtonBox(), 6);
-    limelightbButton.whenPressed(new limelightTurn());
+    // limelightbButton = new JoystickButton(driverInteraction.getDriverInteraction().getButtonBox(), 6);
+    // limelightbButton.whenPressed(new limelightTurn());
+
+    operatorController.getRightBumper().whileHeld(new limelightTurn());
+    operatorController.getDpadUp().whileHeld(new elevatorUp());
+
+    driverController.getRightBumper().whileHeld(new shootCom(.65)); // out low
+    driverController.getRightTriggerButton(.2).whileHeld(new shootCom(1)); // out high
+    driverController.getX().whileHeld(new indexCom(1)); // in
+    driverController.getB().whileHeld(new indexCom(-1)); // out
+    driverController.getY().whileHeld(new intakePivotCom(intakePivot.up));
+    driverController.getA().whileHeld(new intakePivotCom(intakePivot.down));
+
+    
+
+    
+
+
+    //TODO: bind new commands to buttons
   }
 
   /**

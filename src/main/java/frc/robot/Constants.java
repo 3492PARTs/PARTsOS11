@@ -14,7 +14,7 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static int elevatorMotorPin = 5; //TODO: set value
+    public static int elevatorMotorPin = 5; 
     public static int elevatorMotorPin2 = 6;
 
     public static Object speed;
@@ -33,7 +33,7 @@ public final class Constants {
     public static int[] driveTrainRightSideCANIds = {7,8,9}; //TODO: right front, middle, right left
     public static String SD_AUTO_DELAY = "autoDelay1";
 
-    public enum intakePivot{
+    public static enum intakePivot{
         up,
         down,
         stop

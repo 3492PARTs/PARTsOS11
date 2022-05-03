@@ -10,6 +10,8 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 
+import edu.wpi.first.hal.SimDouble;
+import edu.wpi.first.hal.simulation.SimDeviceDataJNI;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -25,6 +27,8 @@ public class driveTrain extends SubsystemBase {
   CANSparkMax left2 = new CANSparkMax(CANLeft[1], MotorType.kBrushless);
   CANSparkMax left3 = new CANSparkMax(CANLeft[2], MotorType.kBrushless);
 
+  
+
   CANSparkMax right1 = new CANSparkMax(CANRight[0], MotorType.kBrushless);
   CANSparkMax right2 = new CANSparkMax(CANRight[1], MotorType.kBrushless);
   CANSparkMax right3 = new CANSparkMax(CANRight[2], MotorType.kBrushless);
@@ -32,6 +36,7 @@ public class driveTrain extends SubsystemBase {
   RelativeEncoder[] leftEncoders = {left1.getEncoder(), left2.getEncoder(), left3.getEncoder()};
   RelativeEncoder[] rightEncoders = {right1.getEncoder(), right2.getEncoder(), right3.getEncoder()};
 
+  
 
 
   
@@ -43,6 +48,8 @@ public class driveTrain extends SubsystemBase {
 // right positive and continous
 //left negative and continous
   AHRS gyro = new AHRS();
+  int dev = SimDeviceDataJNI.getSimDeviceHandle("navX-Sensor[0]");
+  SimDouble angle = new SimDouble(SimDeviceDataJNI.getSimValueHandle(dev, "Yaw"));
 /**
  * 
  * @return right positive and to infinity, left negative to negative infinity.

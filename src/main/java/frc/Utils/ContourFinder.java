@@ -4,11 +4,8 @@
 
 package frc.Utils;
 
-import org.opencv.osgi.OpenCVNativeLoader;
-
 import edu.wpi.first.cscore.CvSource;
 import edu.wpi.first.cscore.MjpegServer;
-import edu.wpi.first.cscore.VideoSource;
 import edu.wpi.first.cscore.VideoMode.PixelFormat;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableEntry;
