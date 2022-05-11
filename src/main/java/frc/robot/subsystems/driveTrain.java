@@ -7,11 +7,24 @@ package frc.robot.subsystems;
 
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.REVPhysicsSim;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.AnalogGyro;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.simulation.AnalogGyroSim;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Utils.encoderDistanceSparkMax;
 import frc.robot.Constants;
@@ -21,9 +34,18 @@ public class driveTrain extends SubsystemBase {
   int[] CANLeft = Constants.driveTrainLeftSideCANIds;
   int[] CANRight = Constants.driveTrainRightSideCANIds;
 
+  REVPhysicsSim sRevPhysicsSim = REVPhysicsSim.getInstance();
+
+
   CANSparkMax left1 = new CANSparkMax(CANLeft[0], MotorType.kBrushless);
   CANSparkMax left2 = new CANSparkMax(CANLeft[1], MotorType.kBrushless);
   CANSparkMax left3 = new CANSparkMax(CANLeft[2], MotorType.kBrushless);
+
+
+
+  private Field2d m_field = new Field2d();
+
+  
 
   CANSparkMax right1 = new CANSparkMax(CANRight[0], MotorType.kBrushless);
   CANSparkMax right2 = new CANSparkMax(CANRight[1], MotorType.kBrushless);
@@ -31,6 +53,8 @@ public class driveTrain extends SubsystemBase {
 
   RelativeEncoder[] leftEncoders = {left1.getEncoder(), left2.getEncoder(), left3.getEncoder()};
   RelativeEncoder[] rightEncoders = {right1.getEncoder(), right2.getEncoder(), right3.getEncoder()};
+
+
 
 
 
@@ -42,7 +66,8 @@ public class driveTrain extends SubsystemBase {
   DifferentialDrive m_Drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 // right positive and continous
 //left negative and continous
-  AHRS gyro = new AHRS();
+  AnalogGyro gyro = new AnalogGyro(1);
+  private AnalogGyroSim gyroSim = new AnalogGyroSim(gyro);
 /**
  * 
  * @return right positive and to infinity, left negative to negative infinity.
@@ -79,6 +104,19 @@ public class driveTrain extends SubsystemBase {
     right1.setOpenLoopRampRate(rampRate);
     right2.setOpenLoopRampRate(rampRate);
     right3.setOpenLoopRampRate(rampRate);
+
+    sRevPhysicsSim.addSparkMax(right1, 3.28f, 5820.0f);
+    sRevPhysicsSim.addSparkMax(right2, 3.28f, 5820.0f);
+    sRevPhysicsSim.addSparkMax(right3, 3.28f, 5820.0f);
+
+    sRevPhysicsSim.addSparkMax(left1, 3.28f, 5820.0f);
+    sRevPhysicsSim.addSparkMax(left2, 3.28f, 5820.0f);
+    sRevPhysicsSim.addSparkMax(left3, 3.28f, 5820.0f);
+
+    m_dSim.setPose(new Pose2d(2, 2, new Rotation2d(30)));
+
+    SmartDashboard.putData(m_field);
+
 
   }
   // Singleton Pattern use this, DO NOT make a new instance of a subsystem
@@ -120,10 +158,37 @@ public class driveTrain extends SubsystemBase {
   public void calibrateGyro(){
     gyro.calibrate();
   }
+  DifferentialDrivetrainSim m_dSim = Constants.drivesSim;
+
+  DifferentialDriveOdometry m_Odometry = new DifferentialDriveOdometry(new Rotation2d(gyroSim.getAngle()));
+
+
+  @Override
+  public void simulationPeriodic() {
+      // TODO Auto-generated method stub
+    m_dSim.setInputs(leftControllerGroup.get() * RobotController.getInputVoltage(), rightControllerGroup.get() * RobotController.getInputVoltage());
+    m_dSim.update(.02);
+    
+
+    
+
+    gyroSim.setAngle(-m_dSim.getHeading().getDegrees() % 360);
+    getDriveTrainDistanceMeasure().setGroupOneAverage(Units.metersToInches(m_dSim.getLeftPositionMeters()));
+    getDriveTrainDistanceMeasure().setGroupTwoAverage(Units.metersToInches(m_dSim.getLeftPositionMeters()));
+      
+    m_Odometry.update(new Rotation2d(gyroSim.getAngle()), m_dSim.getLeftPositionMeters(), m_dSim.getRightPositionMeters());
+    m_field.setRobotPose(m_Odometry.getPoseMeters());
+
+  }
+  
   
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    if(Robot.isReal()){
+    getDriveTrainDistanceMeasure().update();
+    }
+ 
   }
 }

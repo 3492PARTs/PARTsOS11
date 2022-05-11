@@ -36,15 +36,28 @@ public class encoderDistanceSparkMax extends encoderDistance {
 
     @Override
     public double getGroupOneAverage() {
-        update();
+
         return -Average(groupOneTotals);// use onlt for left side drive train
     }
     @Override
     public double getGroupTwoAverage() {
-        update();
+
         return Average(groupTwoTotals);
     }
 
+    public void setGroupOneAverage(double inches) {
+        
+        for (int i = 0; i < groupOne.length; i++) {
+            groupOneTotals[i] = inches;
+        };// use onlt for left side drive train
+    }
+
+    public void setGroupTwoAverage(double inches) {
+        
+        for (int i = 0; i < groupTwo.length; i++) {
+            groupTwoTotals[i] = inches;
+        };// use onlt for left side drive train
+    }
 
 
     @Override

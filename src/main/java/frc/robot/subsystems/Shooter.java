@@ -14,7 +14,6 @@ import frc.robot.Constants;
 public class Shooter {
 
 
-    AnalogInput ultrasonic;
     MedianFilter medianFilter = new MedianFilter(4);
     TalonSRX ShooterMotor = new TalonSRX(Constants.shooterMotorPin);
     NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -24,14 +23,9 @@ public class Shooter {
 
     Boolean isOn = false;
 
-    public double getUltrasonicDistance() {
-        double dist = (ultrasonic.getVoltage()) * 48.6111;
-            medianFilter.calculate(dist);
-        return dist; // in feet
-    }
 
     private Shooter(){
-        ultrasonic = new AnalogInput(0);
+  
         ShooterMotor.configClosedloopRamp(.2);
     
     }

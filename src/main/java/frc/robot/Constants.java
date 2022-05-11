@@ -4,6 +4,11 @@
 
 package frc.robot;
 
+import edu.wpi.first.math.VecBuilder;
+import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj.simulation.DifferentialDrivetrainSim;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -38,6 +43,16 @@ public final class Constants {
         down,
         stop
     }
+
+    public static DifferentialDrivetrainSim drivesSim = new DifferentialDrivetrainSim(
+        DCMotor.getNEO(3),
+        8.01,
+        6,
+        Units.lbsToKilograms(120),
+        Units.inchesToMeters(3),
+        Units.inchesToMeters(18),
+        null
+    );
 
 
 }
