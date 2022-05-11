@@ -28,6 +28,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.Utils.encoderDistanceSparkMax;
 import frc.robot.Constants;
+import frc.robot.Robot;
 
 public class driveTrain extends SubsystemBase {
 
@@ -187,7 +188,7 @@ public class driveTrain extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     if(Robot.isReal()){
-    getDriveTrainDistanceMeasure().update();
+      getDriveTrainDistanceMeasure().update();
     }
  
   }
