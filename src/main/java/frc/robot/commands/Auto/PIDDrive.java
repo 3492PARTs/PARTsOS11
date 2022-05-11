@@ -29,7 +29,7 @@ public class PIDDrive extends CommandBase {
     //makes 
   
     
-      this.goalDistance = distance;
+   4   this.goalDistance = distance;
   }
   public PIDDrive(double distance , double maxSpeed) {
     this.maxSpeed = maxSpeed;
