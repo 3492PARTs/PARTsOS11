@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
+import edu.wpi.first.math.util.Units;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -41,15 +42,14 @@ public final class Constants {
     }
 
     // trajectory and kinematics constants
-    public static final double ksVolts = 0;
-    public static final double kvVoltSecondsPerMeter = 0;
-    public static final double kaVoltSecondsSquaredPerMeter = 0;
-    public static final double kPDriveVel = 0;
-    public static final double kTrackwidthMeters = 0;
+    public static final double ksVolts = 0.093711;
+    public static final double kvVoltSecondsPerMeter = 0.98892;
+    public static final double kaVoltSecondsSquaredPerMeter = .1017;
+    public static final double kPDriveVel = 1.0091;
+    public static final double kTrackwidthMeters = Units.inchesToMeters(23);
     public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
-    public static final double kMaxSpeedMetersPerSecond = 0;
-    public static final double kMaxAccelerationMetersPerSecondSquared = 0;
-
+    public static final double kMaxSpeedMetersPerSecond = .2;
+    public static final double kMaxAccelerationMetersPerSecondSquared = .05;
 
     // generally these 2 numbers will work
     public static final double kRamseteB = 2;

@@ -31,7 +31,7 @@ public class trajectoryFollower extends SequentialCommandGroup {
     voltageConstraint = 
       new DifferentialDriveVoltageConstraint(new SimpleMotorFeedforward(Constants.ksVolts, Constants.kvVoltSecondsPerMeter, Constants.kMaxAccelerationMetersPerSecondSquared),
       Constants.kDriveKinematics
-      , 11);
+      , 8);
 
       TrajectoryConfig config = new TrajectoryConfig(
         Constants.kMaxSpeedMetersPerSecond, 
@@ -41,8 +41,8 @@ public class trajectoryFollower extends SequentialCommandGroup {
 
       edu.wpi.first.math.trajectory.Trajectory testTrajectory = TrajectoryGenerator.generateTrajectory(
         new Pose2d(0,0, new Rotation2d(0)),
-        List.of(new Translation2d(1,1), new Translation2d(2 ,-1)),
-         new Pose2d(3 ,0 , new Rotation2d(0)),
+        List.of(new Translation2d(.5,.5), new Translation2d(1 ,-.5)),
+         new Pose2d(1.5 ,0 , new Rotation2d(0)),
           config);
 
 

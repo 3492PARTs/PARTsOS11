@@ -14,6 +14,7 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
@@ -111,7 +112,7 @@ public class driveTrain extends SubsystemBase {
   public double getLeftVelocity(){
     double VelocityAccumulator = 0;
     for (int i = 0; i < leftEncoders.length; i++) {
-      VelocityAccumulator += leftEncoders[i].getVelocity();
+      VelocityAccumulator += (leftEncoders[i].getVelocity() * Units.inchesToMeters(3))/60;
     }
     return VelocityAccumulator/3;
   }
@@ -119,7 +120,7 @@ public class driveTrain extends SubsystemBase {
   public double getRightVelocity(){
     double VelocityAccumulator = 0;
     for (int i = 0; i < rightEncoders.length; i++) {
-      VelocityAccumulator += rightEncoders[i].getVelocity();
+      VelocityAccumulator += (rightEncoders[i].getVelocity() * Units.inchesToMeters(3))/60;
     }
     return VelocityAccumulator/3;
   }
@@ -155,6 +156,6 @@ public class driveTrain extends SubsystemBase {
   public void periodic() {
     
     // This method will be called once per scheduler run
-    differentialDriveOdometry.update(new Rotation2d(getAngle()), imperialToMetric.inchesToMeters(getDriveTrainDistanceMeasure().getGroupOneAverage()), imperialToMetric.inchesToMeters(getDriveTrainDistanceMeasure().getGroupTwoAverage()));
+    differentialDriveOdometry.update(new Rotation2d(Math.toRadians(getAngle())), imperialToMetric.inchesToMeters(getDriveTrainDistanceMeasure().getGroupOneAverage()), imperialToMetric.inchesToMeters(getDriveTrainDistanceMeasure().getGroupTwoAverage()));
   }
 }
