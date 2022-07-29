@@ -95,6 +95,9 @@ public class RobotContainer {
     operatorController.getRightBumper().whileHeld(new limelightTurn());
     operatorController.getDpadUp().whileHeld(new elevatorUp());
 
+    driverController.getRightBumper().whileHeld(new limelightTurn());
+
+
     driverController.getRightBumper().whileHeld(new shootCom(.65)); // out low
     driverController.getRightTriggerButton(.2).whileHeld(new shootCom(1)); // out high
     driverController.getX().whileHeld(new indexCom(1)); // in
