@@ -11,8 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
-import frc.robot.commands.limelightTurn;
+import frc.robot.commands.teleop.*;
 import frc.robot.commands.Auto.BackUp;
+import frc.robot.commands.Auto.IntakeCom;
 import frc.robot.commands.Auto.LowGoalButGood;
 
 import frc.Utils.controls.beanieController;
@@ -100,7 +101,7 @@ public class RobotContainer {
     driverController.getB().whileHeld(new indexCom(-1)); // out
     driverController.getY().whileHeld(new intakePivotCom(intakePivot.up));
     driverController.getA().whileHeld(new intakePivotCom(intakePivot.down));
-
+    driverController.getLeftTriggerButton(.5).whileHeld(new IntakeCom());
     
 
     

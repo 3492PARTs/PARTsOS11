@@ -103,6 +103,9 @@ public class beanieController {
     public triggerButton getRightTriggerButton(double threshold){
         return new triggerButton(controller, 3, threshold);
     }
+    public triggerButton getLeftTriggerButton(double threshold){
+        return new triggerButton(controller, 2, threshold);
+    }
 
     public void Rumbling(Rumbler rumbler){
         controller.setRumble(RumbleType.kLeftRumble, rumbler.getRumbler());
