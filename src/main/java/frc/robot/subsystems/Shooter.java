@@ -21,6 +21,7 @@ public class Shooter {
     NetworkTableEntry tx = table.getEntry("tx");
     NetworkTableEntry ty = table.getEntry("ty");
     NetworkTableEntry ta = table.getEntry("ta");
+    double cameraHeight = 24 / 12 ;// 24 inches
 
     Boolean isOn = false;
 
@@ -99,7 +100,7 @@ public class Shooter {
 
 
         double heightOfTarget = 8.66666666;
-        return ((heightOfTarget)/Math.tan(Math.toRadians(43 + getTY()))) - (2 + 1.541);// to get relative to front;
+        return ((heightOfTarget - cameraHeight)/Math.tan(Math.toRadians(43 + getTY()))) - (2 + 1.541);// to get relative to front;
         
 
     }

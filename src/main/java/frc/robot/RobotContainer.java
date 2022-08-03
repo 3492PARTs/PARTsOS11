@@ -95,7 +95,7 @@ public class RobotContainer {
     operatorController.getRightBumper().whileHeld(new limelightTurn());
     operatorController.getDpadUp().whileHeld(new elevatorUp());
 
-    driverController.getRightBumper().whileHeld(new limelightTurn());
+
 
 
     driverController.getRightBumper().whileHeld(new shootCom(.65)); // out low
@@ -105,6 +105,7 @@ public class RobotContainer {
     driverController.getY().whileHeld(new intakePivotCom(intakePivot.up));
     driverController.getA().whileHeld(new intakePivotCom(intakePivot.down));
     driverController.getLeftTriggerButton(.5).whileHeld(new IntakeCom());
+    driverController.getLeftBumper().whileHeld(new limelightTurn());
     
 
     
