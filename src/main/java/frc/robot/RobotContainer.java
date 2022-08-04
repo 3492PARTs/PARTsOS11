@@ -49,8 +49,8 @@ public class RobotContainer {
   Command com;
   
   private SendableChooser<Command> m_chooser = new SendableChooser<>();
-  beanieController driverController = new beanieController(0);
-  beanieController operatorController = new beanieController(1);
+  public static beanieController driverController = new beanieController(0);
+  public static beanieController operatorController = new beanieController(1);
 
   
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -72,7 +72,7 @@ public class RobotContainer {
       m_chooser.addOption("Reverse shoot", new BackUp());
 
 
-      driveTrain.getM_DriveTrain().setDefaultCommand(new driveControllerCom(driverController));
+      
 
 
 
@@ -94,6 +94,10 @@ public class RobotContainer {
 
     operatorController.getRightBumper().whileHeld(new limelightTurn());
     operatorController.getDpadUp().whileHeld(new elevatorUp());
+    operatorController.getY().whileHeld(new intakePivotCom(intakePivot.up));
+    operatorController.getA().whileHeld(new intakePivotCom(intakePivot.down));
+
+
 
 
 

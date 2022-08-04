@@ -5,12 +5,14 @@
 package frc.robot.commands.teleop;
 
 
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.Utils.controls.beanieController;
 import frc.robot.subsystems.driveTrain;
 
 public class driveControllerCom extends CommandBase {
   beanieController controller;
+  SlewRateLimiter turnSensitivity = new SlewRateLimiter(.6, .4);
   /** Creates a new driveControllerCom. */
   public driveControllerCom(beanieController controller) {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -25,7 +27,8 @@ public class driveControllerCom extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    driveTrain.getM_DriveTrain().arcadeDrive(controller.getLeftYAxis(), controller.getRightXAxis());
+    
+    driveTrain.getM_DriveTrain().arcadeDrive(controller.getLeftYAxis(), turnSensitivity.calculate( controller.getRightXAxis()));
   }
 
   // Called once the command ends or is interrupted.
