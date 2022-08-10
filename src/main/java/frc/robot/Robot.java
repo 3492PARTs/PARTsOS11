@@ -7,6 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.teleop.driveControllerCom;
+import frc.robot.subsystems.driveTrain;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -25,9 +27,11 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
+    driveTrain.getM_DriveTrain().calibrateGyro();
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+  
   }
 
   /**
@@ -44,6 +48,7 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
@@ -62,11 +67,16 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
+
   }
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    CommandScheduler.getInstance().run();
+
+    
+  }
 
   @Override
   public void teleopInit() {
@@ -77,16 +87,25 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    driveTrain.getM_DriveTrain().setDefaultCommand(new driveControllerCom(RobotContainer.driverController));
   }
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    sDashBoard.getsDashBoard().alwaysUpdate();
+    sDashBoard.getsDashBoard().TeleopUpdate();
+    
+
+
+  
+  }
 
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
     CommandScheduler.getInstance().cancelAll();
+    
   }
 
   /** This function is called periodically during test mode. */

@@ -4,32 +4,31 @@
 
 package frc.robot.commands;
 
-import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.Utils.TalonSRXLinearDistance;
+import frc.robot.Constants.intakePivot;
 
-/** An example command that uses an example subsystem. */
-public class ExampleCommand extends CommandBase {
-  @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final ExampleSubsystem m_subsystem;
+public class intakeMove extends CommandBase {
+  frc.robot.subsystems.Intake intake;
+  TalonSRXLinearDistance distance;
 
-  /**
-   * Creates a new ExampleCommand.
-   *
-   * @param subsystem The subsystem used by this command.
-   */
-  public ExampleCommand(ExampleSubsystem subsystem) {
-    m_subsystem = subsystem;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(subsystem);
+  /** Creates a new intakeMove. */
+  public intakeMove() {
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    intake = frc.robot.subsystems.Intake.getballIntake();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+
+    intake.setPivotDirection(intakePivot.down);
+    System.out.println(distance.currentDistance());
+  }
 
   // Called once the command ends or is interrupted.
   @Override

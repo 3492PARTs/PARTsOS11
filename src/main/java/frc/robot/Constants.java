@@ -14,10 +14,30 @@ package frc.robot;
  */
 public final class Constants {
 
-    public static int intakeMotorPin; //TODO: Declare Value
+    public static int elevatorMotorPin = 5; 
+    public static int elevatorMotorPin2 = 6;
 
-    public static double[] PIDDriveConstants = new double[3]; //kp, ki , kd TODO: set all
+    public static Object speed;
+    public static boolean autoFireLock;
+    public static int intakeMotorPin = 2; //TODO: Declare Value
+    public static int shooterMotorPin = 1; //TODO: declare value
+    public static int intakePivotPin = 11; // TODO: set final value
+    public static int indexerMotor = 4; // TODO: set final value
 
-    public static int[] driveTrainLeftSideCANIds = new int[3]; // left front, middle, back left
-    public static int[] driveTrainRightSideCANIds = new int[3]; // right front, middle, right left
+    public static double[] PIDDriveConstants = { .4, 0 ,0}; //kp, ki , kd TODO: in tuning process do not change without test
+    public static double[] PIDTurnConstants = {.008 , .011 ,0}; //kp, ki , kd TODO: in tuning process do not change without test .15 , .175 ,0
+    public static double[] PIDLimelightConstants = {.010 , .02 ,0};
+
+
+    public static int[] driveTrainLeftSideCANIds = {10,20,12}; //TODO: set left front, middle, back left
+    public static int[] driveTrainRightSideCANIds = {7,8,9}; //TODO: right front, middle, right left
+    public static String SD_AUTO_DELAY = "autoDelay1";
+
+    public static enum intakePivot{
+        up,
+        down,
+        stop
+    }
+
+
 }
