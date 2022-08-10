@@ -19,12 +19,11 @@ import frc.robot.commands.Auto.LowGoalButGood;
 import frc.Utils.controls.beanieController;
 import frc.robot.Constants.intakePivot;
 
+
 import frc.robot.commands.Auto.PIDDrive;
 import frc.robot.commands.Auto.ShootNScoot;
-import frc.robot.commands.Auto.TurnRightandTaxi;
 import frc.robot.commands.Auto.TwoBallLow;
 import frc.robot.commands.Auto.flipFast;
-import frc.robot.commands.Auto.shootScootSteal;
 import frc.robot.commands.Auto.turnRobo;
 import frc.robot.commands.Auto.twoBallAuto;
 import frc.robot.commands.Auto.twoBallDiagonal;
@@ -60,16 +59,14 @@ public class RobotContainer {
 
 
       SmartDashboard.putData("Choose Autonomous Mode", m_chooser);
-      m_chooser.addOption("TurnLEft", new twoBallAuto());
+      m_chooser.setDefaultOption("Two Ball auto", new twoBallAuto());
       m_chooser.addOption("SHOOT and SCoot", new ShootNScoot());
-      m_chooser.addOption("Turn Right Hangar", new TurnRightandTaxi());
-      m_chooser.setDefaultOption("low goal but good",  new LowGoalButGood());
-      //m_chooser.addOption("PID TUNE", new PIDDrive(-48)); // move forward 48 in
-      //m_chooser.addOption("TUNETURN",new turnRobo(5));
-      m_chooser.addOption("Turn right / diagonal", new twoBallDiagonal());
+      m_chooser.addOption("PID TUNE", new PIDDrive(-48)); // move forward 48 in
+      m_chooser.addOption("TUNETURN",new turnRobo(5));
+      m_chooser.addOption("Two ball diagonal", new twoBallDiagonal());
+      m_chooser.addOption("flipFast", new flipFast());
       m_chooser.addOption("low goal 2", new TwoBallLow());
-      m_chooser.addOption("scoot and steal", new shootScootSteal());
-      m_chooser.addOption("Reverse shoot", new BackUp());
+      m_chooser.addOption("shooter test", new autoShooting(1));
 
 
       
@@ -81,13 +78,13 @@ public class RobotContainer {
 
   }
 
-  JoystickButton limelightbButton;
   /**
    * Use this method to define your button->command mappings. Buttons can be created by
    * instantiating a {@link GenericHID} or one of its subclasses ({@link
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
+
   private void configureButtonBindings() {
     // limelightbButton = new JoystickButton(driverInteraction.getDriverInteraction().getButtonBox(), 6);
     // limelightbButton.whenPressed(new limelightTurn());
@@ -117,7 +114,6 @@ public class RobotContainer {
 
     //TODO: bind new commands to buttons
   }
-
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
    *

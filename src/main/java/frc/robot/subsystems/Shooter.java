@@ -101,6 +101,7 @@ public class Shooter {
 
         double heightOfTarget = 8.66666666;
         return ((heightOfTarget - cameraHeight)/Math.tan(Math.toRadians(43 + getTY()))) - (2 + 1.541);// to get relative to front;
+
         
 
     }
