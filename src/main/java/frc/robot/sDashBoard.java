@@ -5,8 +5,6 @@
 package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.cscore.HttpCamera;
-import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Shooter;
 
@@ -22,7 +20,9 @@ public class sDashBoard {
     public void alwaysUpdate(){
         
         SmartDashboard.putBoolean("shooter wheel speed", Shooter.getballShooter().getRPM() < -64);
+
         SmartDashboard.putNumber("shooter rps", Shooter.getballShooter().getRPM());
+
     
     }
 

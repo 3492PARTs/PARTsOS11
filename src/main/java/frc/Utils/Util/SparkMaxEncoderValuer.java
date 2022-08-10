@@ -5,10 +5,9 @@
 package frc.Utils.Util;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel;
 
 /** Add your docs here. */
-public class SparkMaxEncoderValuer implements EncoderValueInterface{
+public class SparkMaxEncoderValuer implements EncoderValueInterface<CANSparkMax>{
     CANSparkMax sparkMax;
     SparkMaxEncoderValuer(CANSparkMax sparkMax){
         this.sparkMax = sparkMax;

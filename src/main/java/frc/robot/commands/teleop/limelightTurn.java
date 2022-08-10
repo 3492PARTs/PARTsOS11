@@ -2,9 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.commands;
-
-import javax.swing.text.html.parser.DTD;
+package frc.robot.commands.teleop;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
@@ -20,7 +18,7 @@ public class limelightTurn extends CommandBase {
   PIDController pidTurn = new PIDController(Constants.PIDLimelightConstants[0], Constants.PIDLimelightConstants[1], Constants.PIDLimelightConstants[2]);
   public limelightTurn() {
     // Use addRequirements() here to declare subsystem dependencies.
-  
+      addRequirements(driveTrain.getM_DriveTrain());
   }
   double gyroOffset;
   // Called when the command is initially scheduled.
@@ -59,7 +57,7 @@ public class limelightTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (pidTurn.atSetpoint() && (dTrain.gyroVelocity() > 10)) || (System.currentTimeMillis() - initTime )> 3000; // returns true or false based on whether the tX value is less than or greater than 20
+    return (pidTurn.atSetpoint() && (dTrain.gyroVelocity() > 10)); // returns true or false based on whether the tX value is less than or greater than 20
   }
 
 

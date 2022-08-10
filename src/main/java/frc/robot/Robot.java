@@ -7,8 +7,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.teleop.driveControllerCom;
 import frc.robot.subsystems.driveTrain;
-import frc.robot.subsystems.driverInteraction;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -18,7 +18,6 @@ import frc.robot.subsystems.driverInteraction;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
-  driverInteraction dInteraction = driverInteraction.getDriverInteraction();
 
   private RobotContainer m_robotContainer;
 
@@ -88,6 +87,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    driveTrain.getM_DriveTrain().setDefaultCommand(new driveControllerCom(RobotContainer.driverController));
   }
 
   /** This function is called periodically during operator control. */
@@ -96,8 +96,7 @@ public class Robot extends TimedRobot {
     sDashBoard.getsDashBoard().alwaysUpdate();
     sDashBoard.getsDashBoard().TeleopUpdate();
     
-    dInteraction.updateButtonbox();
-    dInteraction.updateController();
+
 
   
   }

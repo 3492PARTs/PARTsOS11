@@ -3,12 +3,8 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import frc.robot.Constants;
 import frc.robot.Constants.intakePivot;
-import frc.Utils.TalonSRXLinearDistance;
 
 public class Intake {  
     Boolean isOn = false;
