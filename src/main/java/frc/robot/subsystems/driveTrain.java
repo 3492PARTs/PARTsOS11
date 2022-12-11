@@ -10,6 +10,11 @@ import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.RelativeEncoder;
 
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -28,10 +33,16 @@ public class driveTrain extends SubsystemBase {
   CANSparkMax right1 = new CANSparkMax(CANRight[0], MotorType.kBrushless);
   CANSparkMax right2 = new CANSparkMax(CANRight[1], MotorType.kBrushless);
   CANSparkMax right3 = new CANSparkMax(CANRight[2], MotorType.kBrushless);
-
+// right positive and continous
+//left negative and continous
+  AHRS gyro = new AHRS();
   RelativeEncoder[] leftEncoders = {left1.getEncoder(), left2.getEncoder(), left3.getEncoder()};
   RelativeEncoder[] rightEncoders = {right1.getEncoder(), right2.getEncoder(), right3.getEncoder()};
 
+
+
+  DifferentialDriveOdometry m_Odometry = new DifferentialDriveOdometry(gyro.getRotation2d());
+ 
 
 
   
@@ -40,9 +51,7 @@ public class driveTrain extends SubsystemBase {
   
   MotorControllerGroup rightControllerGroup = new MotorControllerGroup(right1, right2, right3);
   DifferentialDrive m_Drive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
-// right positive and continous
-//left negative and continous
-  AHRS gyro = new AHRS();
+
 /**
  * 
  * @return right positive and to infinity, left negative to negative infinity.
@@ -120,10 +129,25 @@ public class driveTrain extends SubsystemBase {
   public void calibrateGyro(){
     gyro.calibrate();
   }
+  public Pose2d getPose(){
+    return m_Odometry.getPoseMeters();
+  }
+  public DifferentialDriveWheelSpeeds getWheelSpeeds(){
+     DifferentialDriveWheelSpeeds wheelSpeeds = new DifferentialDriveWheelSpeeds((getLeftVelocity() * 6*Math.PI)/8.01, (getRightVelocity()* 6*Math.PI)/8.01);
+    return wheelSpeeds;
+  }
+
+  
+  public void driveVolts(double leftVoltage, double rightVoltage){
+    leftControllerGroup.setVoltage(leftVoltage);
+    rightControllerGroup.setVoltage(rightVoltage);
+    m_Drive.feed();  
+  }
   
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    m_Odometry.update(gyro.getRotation2d(), Units.inchesToMeters(getDriveTrainDistanceMeasure().getGroupOneAverage()), Units.inchesToMeters(getDriveTrainDistanceMeasure().getGroupTwoAverage()));
   }
 }
