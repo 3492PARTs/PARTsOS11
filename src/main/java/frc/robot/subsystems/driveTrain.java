@@ -5,6 +5,9 @@
 package frc.robot.subsystems;
 
 
+import java.util.function.BiConsumer;
+import java.util.function.Supplier;
+
 import com.kauailabs.navx.frc.AHRS;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -12,6 +15,7 @@ import com.revrobotics.RelativeEncoder;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.DifferentialDriveKinematics;
 import edu.wpi.first.math.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.math.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.math.util.Units;
@@ -42,7 +46,8 @@ public class driveTrain extends SubsystemBase {
 
 
   DifferentialDriveOdometry m_Odometry = new DifferentialDriveOdometry(gyro.getRotation2d());
- 
+  DifferentialDriveKinematics kinematics = new DifferentialDriveKinematics(.2);
+
 
 
   
@@ -132,16 +137,43 @@ public class driveTrain extends SubsystemBase {
   public Pose2d getPose(){
     return m_Odometry.getPoseMeters();
   }
+  public void resetPose(Pose2d pose){
+    this.m_Odometry.resetPosition(pose, gyro.getRotation2d());
+  }
+
+  public Supplier<Pose2d> getPoseSupplier(){
+    Supplier<Pose2d> p = () -> m_Odometry.getPoseMeters();
+    return p;
+  }
+  
   public DifferentialDriveWheelSpeeds getWheelSpeeds(){
      DifferentialDriveWheelSpeeds wheelSpeeds = new DifferentialDriveWheelSpeeds((getLeftVelocity() * 6*Math.PI)/8.01, (getRightVelocity()* 6*Math.PI)/8.01);
     return wheelSpeeds;
   }
 
-  
-  public void driveVolts(double leftVoltage, double rightVoltage){
+  public Supplier<DifferentialDriveWheelSpeeds> getWheelSpeedSupplier(){
+    Supplier<DifferentialDriveWheelSpeeds> s = () -> new DifferentialDriveWheelSpeeds((getLeftVelocity() * 6*Math.PI)/8.01, (getRightVelocity()* 6*Math.PI)/8.01);
+    return s;
+ }
+
+  public void driveVolts(Double leftVoltage, Double rightVoltage){
     leftControllerGroup.setVoltage(leftVoltage);
     rightControllerGroup.setVoltage(rightVoltage);
     m_Drive.feed();  
+  }
+
+  public BiConsumer<Double, Double> getBiConsumer() {
+    BiConsumer<Double, Double> biC = (leftVoltage, rightVoltage) -> {
+      leftControllerGroup.setVoltage(leftVoltage);
+      rightControllerGroup.setVoltage(rightVoltage);
+      m_Drive.feed();  
+    };
+
+    return biC;
+  }
+
+  public DifferentialDriveKinematics getKinematics(){
+    return kinematics;
   }
   
 
