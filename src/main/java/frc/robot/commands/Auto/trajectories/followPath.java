@@ -26,13 +26,13 @@ public class followPath {
     // for every path in the group
     
     ArrayList<PathPlannerTrajectory> pathGroup = PathPlanner.loadPathGroup("FullAuto", new PathConstraints(1, 1));
-    PathPlannerTrajectory traj = PathPlanner.loadPath("test", new PathConstraints(1, 1));
-    double ks = 0;
-    double kv = 0;
-    double ka = 0;
-    Subsystem m_dTrain = driveTrain.getM_DriveTrain();
+    static PathPlannerTrajectory traj = PathPlanner.loadPath("test", new PathConstraints(1, 1));
+    static double ks = 0;
+    static double kv = 0;
+    static double ka = 0;
+    static Subsystem m_dTrain = driveTrain.getM_DriveTrain();
 
-    PPRamseteCommand controller1 = new PPRamseteCommand(
+    static PPRamseteCommand controller1 = new PPRamseteCommand(
         traj,
         driveTrain.getM_DriveTrain().getPoseSupplier(),
         new RamseteController(),
@@ -62,6 +62,9 @@ public class followPath {
         driveTrain.getM_DriveTrain() // The drive subsystem. Used to properly set the requirements of path following commands
     );
 
-    Command fullAuto = autoBuilder.fullAuto(pathGroup);
+    //Command fullAuto = autoBuilder.fullAuto(pathGroup);
     
+    public static Command getAutoCommand(){
+        return controller1;
+    }
 }

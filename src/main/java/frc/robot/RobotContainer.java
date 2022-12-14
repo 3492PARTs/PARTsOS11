@@ -17,6 +17,8 @@ import frc.robot.commands.Auto.flipFast;
 import frc.robot.commands.Auto.turnRobo;
 import frc.robot.commands.Auto.twoBallAuto;
 import frc.robot.commands.Auto.twoBallDiagonal;
+import frc.robot.commands.Auto.trajectories.driveForwardVolts;
+import frc.robot.commands.Auto.trajectories.followPath;
 import frc.robot.subsystems.ExampleSubsystem;
 
 /**
@@ -47,6 +49,8 @@ public class RobotContainer {
       m_chooser.addOption("Two ball diagonal", new twoBallDiagonal());
       m_chooser.addOption("flipFast", new flipFast());
       m_chooser.addOption("low goal 2", new TwoBallLow());
+      m_chooser.addOption("test Volts", new driveForwardVolts());
+      m_chooser.addOption("follow path",  followPath.getAutoCommand());
 
 
 
