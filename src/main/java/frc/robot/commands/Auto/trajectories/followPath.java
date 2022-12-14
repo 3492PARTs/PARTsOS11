@@ -53,7 +53,7 @@ public class followPath {
 
     // Create the AutoBuilder. This only needs to be created once when robot code starts, not every time you want to create an auto command. A good place to put this is in RobotContainer along with your subsystems.
     RamseteAutoBuilder autoBuilder = new RamseteAutoBuilder(
-        driveTrain.getM_DriveTrain()::getPose, // Pose2d supplier
+        driveTrain.getM_DriveTrain().getPoseSupplier(), // Pose2d supplier
         driveTrain.getM_DriveTrain()::resetPose, // Pose2d consumer, used to reset odometry at the beginning of auto
         new RamseteController(), // SwerveDriveKinematics
         driveTrain.getM_DriveTrain().getKinematics(),
